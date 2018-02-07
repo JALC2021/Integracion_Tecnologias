@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.Enumeration"%>
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -18,10 +18,10 @@ and open the template in the editor.
         <title>JSP Page</title>
     </head>
     <body>
-        <% String[] parametros = {"Nombre", "correo-e", "dni"}; %>
+        <%!String[] parametros = {"Nombre", "correo-e", "dni"};%>
         <form action="index.jsp" method="get">
             <table border=1 cellspacing=1 cellpadding=2>
-                <% for (int i = 0; i < parametros.length; i++) {%>
+                <%for (int i = 0; i < parametros.length; i++) {%>
                 <tr>
                     <td><%=parametros[i]%></td>
                     <td><input type="text" name="<%=parametros[i]%>">
