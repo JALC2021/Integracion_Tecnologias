@@ -10,6 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" />
+
     </head>
     <body>
         <div class="middle">
@@ -39,20 +40,22 @@ and open the template in the editor.
                         <input type="radio" name="estudioIT" id="questions" value="Si he estudiado antes IT" class="pull-left" style="display: none;">
                         <label class="radio questions" for="questions">Si he estudiado antes IT</label>
                         
-                            <input type="checkbox" name="bloque" id="questions" value="Jsp" class="pull-left" style="display: none;">
-                            <label class="radio questions" for="questions">Jsp</label>
-                            <input type="checkbox" name="pepe" id="questions" value="Struts" class="pull-left" style="display: none;">
-                            <label class="radio questions" for="questions">Struts</label>
-                            <input type="checkbox" name="bloque" id="questions" value="Hibernate" class="pull-left" style="display: none;">
-                            <label class="radio questions" for="questions">Hibernate</label>
-                     
-
+                        <div style="display: inline-block">
+                            <label>JSP<input type="checkbox" name="jsp" value="jsp"/></label>
+                            <label>STRUTS<input type="checkbox"  name="struts" value="struts"/></label>
+                            <label>HIBERNATE<input type="checkbox"  name="hibernate" value="hibernate"/></label>
+                        </div>
                     </div>
 
                     <div class="no">
                         <input type="radio" name="estudioIT" id="photo" class="pull-left" style="display: none;">
                         <label class="radio photo" for="photo">No he estudiado antes IT</label>
+
+                        <div style="display: inline-block">
+                            <label>Nota esperada<input type="number"  name="nota" value="nota" min="0" max="15"/></label>
+                        </div>
                     </div>
+
                 </div>
 
                 <input class="btn" type="submit" name="enviar" value="Enviar"/>
