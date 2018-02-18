@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 05-feb-2018, 18:51:36
-    Author     : jalc
---%>
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>

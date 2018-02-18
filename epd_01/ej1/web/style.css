@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+
+* {
+    box-sizing: border-box; 
+    font-family: 'Indie Flower';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+footer{
+    border-radius: 10px;
+    background-color: #ff3333;
+    padding: 20px;
+    border: 1px solid black;
+    color: white;
+}
+.pFooter{
+    text-align: center;
+}
+.pEnunciado{
+    text-align: justify;
+}

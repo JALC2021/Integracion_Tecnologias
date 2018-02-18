@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 06-feb-2018, 19:28:53
-    Author     : jalc
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

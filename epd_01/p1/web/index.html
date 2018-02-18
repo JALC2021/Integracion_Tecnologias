@@ -10,63 +10,96 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     </head>
     <body>
-        <div class="middle">
-            <h1>Rellene el siguiente formulario</h1>
+        <header>
+        <h1>Rellene el siguiente formulario</h1>
+        </header>
+        <div class="container">
+            
             <form action="recogidaDatos.jsp">
-                <!--  Fancy inputs  -->
-                <div id="fancy-inputs">
-                    <label class="input">
-                        <input type="text" name="nombre" required />
-                        <span><span>Nombre</span></span>
-                    </label>
-
-                    <label class="input">
-                        <input type="text" name="apellidos" required />
-                        <span><span>Apellidos</span></span>
-                    </label>
-
-                    <label class="input">
-                        <input type="email" name="email" required />
-                        <span><span>Email</span></span>
-                    </label>
-                </div>
-
-                <div id="fancy-radio">
-
-                    <div class="si">
-                        <input type="radio" name="estudioIT" id="questions" value="Si he estudiado antes IT" class="pull-left" style="display: none;">
-                        <label class="radio questions" for="questions">Si he estudiado antes IT</label>
-
-                        <div style="display: inline-block">
-                            <label>JSP<input type="checkbox" name="jsp" value="jsp"/></label>
-                            <label>STRUTS<input type="checkbox"  name="struts" value="struts"/></label>
-                            <label>HIBERNATE<input type="checkbox"  name="hibernate" value="hibernate"/></label>
-                        </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Nombre</label>
                     </div>
-
-                    <div class="no">
-                        <input type="radio" name="estudioIT" id="photo" class="pull-left" style="display: none;">
-                        <label class="radio photo" for="photo">No he estudiado antes IT</label>
-
-                        <div style="display: inline-block">
-                            <label>Nota esperada<input type="number"  name="nota" value="nota" min="0" max="15"/></label>
-                        </div>
+                    <div class="col-75">
+                        <input type="text"  name="nombre" placeholder="Introduzca su nombre..">
                     </div>
-
                 </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Apellidos</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text"  name="apellidos" placeholder="Introduzca sus apellidos..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="email" name="email" placeholder="nombre@gmail.com ..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>¿Has estudiado antes IT?</label>
+                    </div>
+                    <div class="col-75">
+                        <label class="labelRadio">S&iacute;</label><input class="radioEstudio" type="radio" name="estudiadoIt" value="si">
+                        <input class="radioEstudio" type="radio" name="estudiadoIt" value="no"><label class="labelRadio">No</label>
+                    </div>
+                </div>
+                <script type="text/javascript">
 
-                <input class="btn" type="submit" name="enviar" value="Enviar"/>
+                    $(document).ready(function () {
+                        $(".radioEstudio").click(function (evento) {
+
+                            var valor = $(this).val();
+
+                            if (valor === 'si') {
+                                $("#siEstudio").css("display", "block");
+                                $("#noEstudio").css("display", "none");
+                            } else {
+                                $("#siEstudio").css("display", "none");
+                                $("#noEstudio").css("display", "block");
+                            }
+                        });
+                    });
+
+                </script>
+                <div id="siEstudio" class="row" style="display: none;">
+                    <div class="col-25">
+                        <label for="country">Bloques</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="siEstudio" name="bloque" multiple>
+                            <option value="Jsp">Jsp</option>
+                            <option value="Struts">Struts</option>
+                            <option value="Hibernate">Hibernate</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="noEstudio" class="row" style="display: none;">
+                    <div class="col-25">
+                        <label>Nota que espera obtener</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" name="nota" min="0" max="10">
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Enviar">
+                </div>
             </form>
         </div>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-        <script src="index.js" type="text/javascript"></script>
         <footer>
-            <p style="text-align: center">Grupo&nbsp;08&nbsp;IT</p>
-            <p style="text-align: center">Juan Antonio L&oacute;pez Cano y Susana de la Calle Iglesias</p>
+            <p class="pFooter">Grupo&nbsp;08&nbsp;IT</p>
+            <p class="pFooter">Juan Antonio L&oacute;pez Cano, Susana de la Calle Iglesias y Pablo Parejo Fernandez</p>
         </footer>
     </body>
 

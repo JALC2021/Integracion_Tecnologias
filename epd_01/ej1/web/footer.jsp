@@ -10,8 +10,8 @@
 
     <body>
         <footer>
-            <p style="text-align: center">Grupo&nbsp;08&nbsp;IT</p>
-            <p style="text-align: center">Juan Antonio L&oacute;pez Cano, Susana de la Calle Iglesias</p>
+            <p class="pFooter">Grupo&nbsp;08&nbsp;IT</p>
+            <p class="pFooter">Juan Antonio L&oacute;pez Cano, Susana de la Calle Iglesias y Pablo Parejo Fernandez.</p>
         </footer>
     </body>
 </html>
