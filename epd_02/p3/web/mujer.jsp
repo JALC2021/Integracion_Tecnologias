@@ -8,6 +8,10 @@
         <title>Epd2_p3</title>
     </head>
     <body>
+        <header>
+            <h1>Resultado</h1>
+        </header>
+
         <%
             if (request.getParameter("deslogarse") != null) {
 
@@ -29,19 +33,22 @@
                     Cookie[] cookies = request.getCookies();
 
                     if (cookies.length > 0) {
-        %><h1>Hola Humana</h1><%
-            for (int i = 0; i < cookies.length; i++) {
-                cookieMujer = cookies[i];
+        %><div class="container">
+            <h1>Hola Humana</h1>
 
-        %><p><%=cookieMujer.getValue()%></p><%
+            <%
+                for (int i = 0; i < cookies.length; i++) {
+                    cookieMujer = cookies[i];
 
+            %><p class="parrafos"><%=cookieMujer.getValue()%></p><%
+
+                            }
                         }
                     }
                 }
-            }
 
-        %>
-        <div class="container">
+            %>
+
 
             <form action="#" method="post">
 
