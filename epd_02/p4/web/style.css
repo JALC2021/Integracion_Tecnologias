@@ -117,7 +117,7 @@ input[type=submit]:hover {
   text-align: center;
   
 }
-.parrafos {
+.parrafos, h2 {
 color: white;
 text-align: justify;
 }
