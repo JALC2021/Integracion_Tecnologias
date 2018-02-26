@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css" />
         <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <title>Epd2_p4</title>
+        <title>Epd2_p6</title>
     </head>
     <body>
         <%
@@ -18,10 +18,10 @@
 
                 if (request.getParameter("sexo").equals("hombre")) {
                     session.setAttribute("sexo", request.getParameter("sexo"));
-        %><jsp:forward page="hombre.jsp" /><%
-        } else {
-            session.setAttribute("sexo", request.getParameter("sexo"));
-        %><jsp:forward page="mujer.jsp" /><%
+                    response.sendRedirect("hombre.jsp");
+                } else {
+                    session.setAttribute("sexo", request.getParameter("sexo"));
+                    response.sendRedirect("mujer.jsp");
                 }
             }
 
