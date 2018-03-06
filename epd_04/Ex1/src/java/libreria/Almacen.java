@@ -24,8 +24,7 @@ public class Almacen {
             Class.forName(controlador);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error loading JDBC driver"
-                    + " class. Cause: " + e);
+            throw new RuntimeException("Error loading JDBC driver" + " class. Cause: " + e);
         }
     }
 
@@ -65,8 +64,7 @@ public class Almacen {
 
     public static Libro consultaLibro(int isbn) throws SQLException {
         Libro libro = null;
-        Connection conexion = DriverManager.getConnection(url, usuario,
-                clave);
+        Connection conexion = DriverManager.getConnection(url, usuario,clave);
         //solicitud/recepcion de peticiones
         Statement solicitud = (Statement) conexion.createStatement();
         ResultSet resultados = solicitud.executeQuery(
@@ -84,8 +82,7 @@ public class Almacen {
     public static List<Libro> consultaLibrosDisponibles()
             throws SQLException {
         List<Libro> lista = new ArrayList<Libro>(10);
-        Connection conexion = DriverManager.getConnection(url, usuario,
-                clave);
+        Connection conexion = DriverManager.getConnection(url, usuario, clave);
         //solicitud/recepcion de peticiones
         Statement solicitud = (Statement) conexion.createStatement();
         ResultSet resultados = solicitud.executeQuery("SELECT * FROM Libro");
