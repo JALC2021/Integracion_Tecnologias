@@ -10,7 +10,8 @@ session.getCreationTime() or session.getLastAccessTime(): --%>
 <%@page import="libreria.*" %>
 <%
     List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
-    List<Libro> listaCompra = Almacen.consultaListaLibrosSolicitados(listaIsbns);
+    Almacen alma = new Almacen();
+    List<Libro> listaCompra = alma.consultaListaLibrosSolicitados(listaIsbns);
     if (listaCompra != null && (listaCompra.size() > 0)) {
 %>
 <center>

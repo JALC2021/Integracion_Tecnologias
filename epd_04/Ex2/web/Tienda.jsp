@@ -9,12 +9,15 @@
 <%@page import="libreria.Almacen" %>
 <%@page import="libreria.Libro" %>
 
-<%List<Libro> listaLibros = null;
- try {
-         listaLibros = Almacen.consultaLibrosDisponibles();
-     } catch (Exception ex) {
-         out.print(ex.getMessage());
-     }
+<%
+    List<Libro> listaLibros = null;
+    Almacen alma = new Almacen();
+    try {
+
+        listaLibros = alma.consultaLibrosDisponibles();
+    } catch (Exception ex) {
+        out.print(ex.getMessage());
+    }
 %>
 <html>
     <head>

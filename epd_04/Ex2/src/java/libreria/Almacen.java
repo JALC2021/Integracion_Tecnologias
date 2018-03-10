@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ public class Almacen {
     Session session = null;
 
     public Almacen() {
-
+        this.session=HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
     public List<Libro> consultaListaLibrosSolicitados(List<String> listaIsbns) throws
@@ -60,7 +59,7 @@ otras*/
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
+//        session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Libro");
         List resultados = (List<Libro>) q.list();
