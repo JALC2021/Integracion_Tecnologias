@@ -11,10 +11,9 @@
 
 <%
     List<Libro> listaLibros = null;
-    Almacen alma = new Almacen();
+    Almacen almacen = new Almacen();
     try {
-
-        listaLibros = alma.consultaLibrosDisponibles();
+        listaLibros = almacen.consultaLibrosDisponibles();
     } catch (Exception ex) {
         out.print(ex.getMessage());
     }

@@ -15,7 +15,6 @@ public class Almacen {
     Session session = null;
 
     public Almacen() {
-        this.session=HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
     public List<Libro> consultaListaLibrosSolicitados(List<String> listaIsbns) throws
@@ -46,27 +45,28 @@ public class Almacen {
     public Libro consultaLibro(int isbn) throws SQLException {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Libro libro = null;
-        //abrimos una transaccion en hibernate para poder ejecutar consultas
+//abrimos una transaccion en hibernate para poder ejecutar consultas
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Libro where isbn = '" + isbn + "'");
         libro = (Libro) q.uniqueResult();
         libro.setCantidad(1);
-        /*muy importante hacer commit para que se termine de ejecutar y cerrar la
-transaccion. Sino se especifica, la transaccion queda abierta y no permite ejecutar
-otras*/
         tx.commit();
+//muy importante hacer commit para que se termine de ejecutar y cerrar la
+//transaccion.Sino se especifica
+//, la transaccion queda abierta y no permite ejecutar
+//otras tx.commit();
         return libro;
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
-//        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("from Libro");
+        Query q = session.createQuery("From Libro");
         List resultados = (List<Libro>) q.list();
-        /*muy importante hacer commit para que se termine de ejecutar y cerrar la
-transaccion. Sino se especifica, la transaccion queda abierta y no permite ejecutar
-otras*/
         tx.commit();
+//muy importante hacer commit para que se termine de ejecutar y cerrar la 
+//transaccion.Sino se especifica
+//transaccion queda abierta y no permite ejecutar otras tx.commit();
         return resultados;
     }
 }

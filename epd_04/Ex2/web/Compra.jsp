@@ -6,9 +6,9 @@
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@ page session="true" import="java.util.*, libreria.*" %>
 <%
-    List<String> listaIsbns= (List<String>) session.getAttribute("tienda.carro");
-    Almacen alma = new Almacen();
-    List<Libro> listaCompra= alma.consultaListaLibrosSolicitados(listaIsbns);
+    Almacen almacen = new Almacen();
+    List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
+    List<Libro> listaCompra = almacen.consultaListaLibrosSolicitados(listaIsbns);
 %>
 
 <html>
@@ -55,7 +55,7 @@
                 <td><b><%= suma%></b></td>
             </tr>
             <%
-                } else {%>
+            } else {%>
             <tr>
                 <td><b>TOTAL</b></td>
                 <td><b></b></td>
