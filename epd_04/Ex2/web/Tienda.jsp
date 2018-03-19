@@ -14,6 +14,9 @@
     Almacen almacen = new Almacen();
     try {
         listaLibros = almacen.consultaLibrosDisponibles();
+        //listaLibros = (List<Libro>) session.getAttribute("tienda.carro");
+        
+        //listaLibros=(List<String>) request.getParameter("tienda.carro");
     } catch (Exception ex) {
         out.print(ex.getMessage());
     }

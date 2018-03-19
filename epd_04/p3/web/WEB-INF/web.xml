@@ -14,6 +14,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>indexInicio.jsp</welcome-file>
+        <welcome-file>ParkingServlet</welcome-file>
     </welcome-file-list>
 </web-app>

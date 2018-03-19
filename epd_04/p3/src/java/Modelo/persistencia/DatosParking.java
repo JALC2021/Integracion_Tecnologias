@@ -11,27 +11,42 @@ import java.sql.SQLException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import java.util.List;
-
-
+import org.hibernate.HibernateException;
+import org.hibernate.Transaction;
 
 public class DatosParking {
 
     Session session = null;
 
     public DatosParking() {
-
+        session = NewHibernateUtil.getSessionFactory().openSession();
     }
 
-    public  List<Coche> cochesZonaAzul() throws SQLException {
+    public List<Coche> cochesZonaAzul() throws SQLException {
         session = NewHibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q;
         q = session.createQuery("from Coche");
-        List cochesAparcados = (List<Coche>) q.list();
+        List<Coche> cochesAparcados = (List<Coche>) q.list();
         tx.commit();
 
         return cochesAparcados;
 
+    }
+
+    public void actualiza(Coche p0) throws SQLException {
+        session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(p0);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
 //    public static List<Coche> vehiculosExceden(boolean opcion) {
@@ -172,5 +187,4 @@ public class DatosParking {
 //        }
 //        return listaCochesAparcados;
 //    }
-
 }

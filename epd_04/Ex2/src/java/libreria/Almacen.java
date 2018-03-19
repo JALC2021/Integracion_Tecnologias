@@ -61,7 +61,7 @@ public class Almacen {
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("From Libro");
+        Query q = session.createQuery("from Libro");
         List resultados = (List<Libro>) q.list();
         tx.commit();
 //muy importante hacer commit para que se termine de ejecutar y cerrar la 

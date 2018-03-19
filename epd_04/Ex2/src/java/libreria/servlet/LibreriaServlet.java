@@ -24,6 +24,7 @@ public class LibreriaServlet extends HttpServlet {
             String accion = request.getParameter("Accion");
 
             if (accion.equals("agregar")) {
+
                 Almacen almacen = new Almacen();
 
                 List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
@@ -54,6 +55,11 @@ public class LibreriaServlet extends HttpServlet {
                 rd.forward(request, response);
             } else if (accion.equals("comprar")) {
                 String url = "/Compra.jsp";
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+            } else {
+                String url = "/Tienda.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);

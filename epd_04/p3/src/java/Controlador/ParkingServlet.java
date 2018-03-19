@@ -32,30 +32,35 @@ public class ParkingServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, Exception {
         HttpSession session = request.getSession(false);
+        DatosParking listaVehiculos = new DatosParking();
 
         if (session != null) {
 
             String accion = request.getParameter("accion");
-            DatosParking listaVehiculos = new DatosParking();
 
-            if (accion.equalsIgnoreCase("consultar")) {
-           // if (accion == null) {
+            if (accion.equalsIgnoreCase("consultarCoches")) {
 
-                session.setAttribute("consultar", listaVehiculos.cochesZonaAzul());
-
-//           List<CocheModelo> listaVehiculos = DatosParking.cochesZonaAzul();
-                //List<Coche> listaVehiculos = (List<Coche>) session.getAttribute("consultar");
-                //session.setAttribute("consultar", listaVehiculos);
 
                 String url = "/index.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
+                request.setAttribute("cochesAparcados", listaVehiculos.cochesZonaAzul());
                 rd.forward(request, response);
+
             }
+
+        } else {
+
+            String url = "/index.jsp";
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher(url);
+            request.setAttribute("cochesAparcados", listaVehiculos.cochesZonaAzul());
+            rd.forward(request, response);
 
         }
     }
@@ -70,41 +75,30 @@ public class ParkingServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ParkingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ParkingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ParkingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ParkingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
