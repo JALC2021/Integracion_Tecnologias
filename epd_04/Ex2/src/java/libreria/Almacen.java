@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+
 
 public class Almacen {
 
@@ -50,23 +52,19 @@ public class Almacen {
         Query q = session.createQuery("from Libro where isbn = '" + isbn + "'");
         libro = (Libro) q.uniqueResult();
         libro.setCantidad(1);
+//muy importante hacer commit para que se termine de ejecutar y cerrar la transaccion.Sino se especifica, la transaccion queda abierta y no permite ejecutar otras 
         tx.commit();
-//muy importante hacer commit para que se termine de ejecutar y cerrar la
-//transaccion.Sino se especifica
-//, la transaccion queda abierta y no permite ejecutar
-//otras tx.commit();
         return libro;
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
+        
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery("from Libro");
         List resultados = (List<Libro>) q.list();
+//muy importante hacer commit para que se termine de ejecutar y cerrar la transaccion.Sino se especifica, la transaccion queda abierta y no permite ejecutar otras 
         tx.commit();
-//muy importante hacer commit para que se termine de ejecutar y cerrar la 
-//transaccion.Sino se especifica
-//transaccion queda abierta y no permite ejecutar otras tx.commit();
         return resultados;
     }
 }
