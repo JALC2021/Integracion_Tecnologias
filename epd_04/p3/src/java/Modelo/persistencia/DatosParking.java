@@ -8,6 +8,7 @@ package Modelo.persistencia;
 import Modelo.Coche;
 import Modelo.NewHibernateUtil;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,8 +82,8 @@ public class DatosParking {
             int tiempoPermitido = cm.getTiempoPermitido();
             //String TiempoPermitido = String.valueOf(tiempoPermitido);
 
-            cm.setHoraEntrada(horaEntrada);
-            cm.setHoraSalida(horaSalida);
+            cm.setHoraEntrada((Time) horaEntrada);
+            cm.setHoraSalida((Time) horaSalida);
 
             if (diferencia > tiempoPermitido) {
 
@@ -106,32 +107,6 @@ public class DatosParking {
         List<Coche> listaCochesMatricula = new ArrayList<Coche>();
 
         for (Coche cm : cochesZonaAzul()) {
-            //Hora entrada y salida
-            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-            Date horaEntrada = cm.getHoraEntrada();
-            //String HoraEntrada = formatoHora.format(horaEntrada.getTime());
-
-            int diferencia = -1;
-            String HoraSalida = "--";
-            Date horaSalida = cm.getHoraSalida();
-
-            if (horaSalida != null) {
-                Date horaSalida1 = cm.getHoraSalida();
-                HoraSalida = formatoHora.format(horaSalida.getTime());
-                long minutosHoraEntrada = horaEntrada.getTime();
-                long minutosHoraSalida = horaSalida1.getTime();
-                diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000 * 60));
-
-            } else {
-                HoraSalida = "--";
-                diferencia = -1;
-            }
-            //Tiempo permitido
-            int tiempoPermitido = cm.getTiempoPermitido();
-            //String TiempoPermitido = String.valueOf(tiempoPermitido);
-
-            cm.setHoraEntrada(horaEntrada);
-            cm.setHoraSalida(horaSalida);
 
             if (cm.getMatricula().startsWith(matriculaRecibida)) {
 
