@@ -106,14 +106,13 @@ public class DatosParking {
         List<Coche> listaCochesMatricula = new ArrayList<Coche>();
 
         for (Coche cm : cochesZonaAzul()) {
-
             //Hora entrada y salida
             SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
             Date horaEntrada = cm.getHoraEntrada();
-            String HoraEntrada = formatoHora.format(horaEntrada.getTime());
+            //String HoraEntrada = formatoHora.format(horaEntrada.getTime());
 
             int diferencia = -1;
-            String HoraSalida = "";
+            String HoraSalida = "--";
             Date horaSalida = cm.getHoraSalida();
 
             if (horaSalida != null) {
@@ -129,7 +128,7 @@ public class DatosParking {
             }
             //Tiempo permitido
             int tiempoPermitido = cm.getTiempoPermitido();
-            String TiempoPermitido = String.valueOf(tiempoPermitido);
+            //String TiempoPermitido = String.valueOf(tiempoPermitido);
 
             cm.setHoraEntrada(horaEntrada);
             cm.setHoraSalida(horaSalida);
@@ -137,9 +136,7 @@ public class DatosParking {
             if (cm.getMatricula().startsWith(matriculaRecibida)) {
 
                 listaCochesMatricula.add(cm);
-
             }
-
         }
         return listaCochesMatricula;
     }

@@ -72,7 +72,7 @@
                 <div class="col-75">
                     <form action="ParkingServlet" method="post">
                         <input type="hidden" name="accion" value="consultarAparcamiento" />
-                        <input type="submit" name="noExceden" value="Coches Aparcaados" />
+                        <input type="submit" name="noExceden" value="Coches Aparcados" />
                     </form>
                     <form action="ParkingServlet" method="post">
                         <input type="hidden" name="accion" value="noExcedenTiempo" />

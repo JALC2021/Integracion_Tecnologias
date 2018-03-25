@@ -5,11 +5,9 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Modelo.Coche"%>
-
 <%
     List<Coche> cochesPorMatricula = (List<Coche>) request.getAttribute("buscarMatricula");
 %>
-
 
 <!DOCTYPE html>
 <html>
@@ -21,13 +19,6 @@
     <body>
         <header><h1>Aparcamiento Zona Azul</h1></header>
         <div class="container">
-            <%
-                if (request.getParameter("buscar") != null) {
-
-                    String matriculaRecibida = (String) request.getParameter("matriculaCoche");
-                    if (matriculaRecibida != null && matriculaRecibida != "") {
-
-            %>
 
             <table border="2">
                 <tr>
@@ -74,9 +65,7 @@
 
             </table>
 
-        </div>
-        <% }%>
-   <div class="row">
+            <div class="row">
 
                 <div class="col-25">
                     <label>¿Que vehiculos quieres ver?</label>
@@ -84,7 +73,7 @@
                 <div class="col-75">
                     <form action="ParkingServlet" method="post">
                         <input type="hidden" name="accion" value="consultarAparcamiento" />
-                        <input type="submit" name="noExceden" value="Coches Aparcaados" />
+                        <input type="submit" name="noExceden" value="Coches Aparcados" />
                     </form>
                     <form name="TiempoPermitido" action="ParkingServlet" method="post">
                         <input type="hidden" name="accion" value="excedenTiempo" />
@@ -112,5 +101,5 @@
 
         </div>
         <%@include file="footer.jsp"%>
-</body>
+    </body>
 </html>

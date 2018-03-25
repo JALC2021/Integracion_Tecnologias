@@ -64,7 +64,6 @@ public class ParkingServlet extends HttpServlet {
             } else if (accion.equalsIgnoreCase("noExcedenTiempo")) {
 
                 //List<CocheModelo> cochesNoExceden = DatosParking.vehiculosExceden(false);
-
                 request.setAttribute("cochesNoExceden", coches.vehiculosExceden(false));
                 String url = "/tiempoNoExcedido.jsp";
                 ServletContext sc = getServletContext();
@@ -73,9 +72,8 @@ public class ParkingServlet extends HttpServlet {
 
             } else if (accion.equalsIgnoreCase("buscarMatricula")) {
                 //List<CocheModelo> cochesEncontrados = DatosParking.busquedaCoches(request.getParameter("matriculaCoche"));
-                // session.setAttribute("buscarMatricula", cochesEncontrados);
-                String prueba="hola";
-                request.setAttribute("buscarMatricula", coches.busquedaCoches(prueba));
+                // session.setAttribute("buscarMatricula", cochesEncontrados);;
+                request.setAttribute("buscarMatricula", coches.busquedaCoches(request.getParameter("matriculaCoche")));
                 String url = "/busquedaPorMatricula.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
@@ -95,7 +93,6 @@ public class ParkingServlet extends HttpServlet {
             request.setAttribute("coches", coches.cochesZonaAzul());
             String url = "/index.jsp";
             ServletContext sc = getServletContext();
-
             RequestDispatcher rd = sc.getRequestDispatcher(url);
             rd.forward(request, response);
         }
