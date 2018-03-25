@@ -1,20 +1,18 @@
-<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session="true"%>
-<%@page import="Controlador.ParkingServlet"%>
-<%@page import="Modelo.Coche" %>
-<%@page import="Modelo.persistencia.DatosParking" %>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
+<%@ page session="true"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="Modelo.Coche"%>
 <%
-    List<Coche> coches = (List<Coche>) request.getAttribute("coches");
+    List<Coche> cochesExceden = (List<Coche>) request.getAttribute("cochesExceden");
 %>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
         <title>Epd4_p3</title>
     </head>
@@ -31,11 +29,11 @@
                     <th>Ti&eacute;mpo permitido</th>
                 </tr>
                 <%                    try {
-                        if (coches.isEmpty()) {
+                        if (cochesExceden.isEmpty()) {
                             out.write("La lista de coches esta vacia");
                         } else {
 
-                            for (Coche cm : coches) {
+                            for (Coche cm : cochesExceden) {
 
                                 //Matricula
                                 String matricula = cm.getMatricula();
@@ -66,16 +64,15 @@
                     }%>
 
             </table>
-
             <div class="row">
 
                 <div class="col-25">
                     <label>¿Que vehiculos quieres ver?</label>
                 </div>
                 <div class="col-75">
-                    <form name="TiempoPermitido" action="ParkingServlet" method="post">
-                        <input type="hidden" name="accion" value="excedenTiempo" />
-                        <input type="submit" name="exceden" value="Vehiculos que Exceden el tiempo en zona azul" />
+                    <form action="ParkingServlet" method="post">
+                        <input type="hidden" name="accion" value="consultarAparcamiento" />
+                        <input type="submit" name="noExceden" value="Coches Aparcaados" />
                     </form>
                     <form action="ParkingServlet" method="post">
                         <input type="hidden" name="accion" value="noExcedenTiempo" />
@@ -114,5 +111,6 @@
 
         </div>
         <%@include file="footer.jsp"%>
+
     </body>
 </html>

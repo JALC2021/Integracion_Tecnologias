@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author jalc
- */
 public class ParkingServlet extends HttpServlet {
 
     /**
@@ -37,31 +33,71 @@ public class ParkingServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, Exception {
         HttpSession session = request.getSession(false);
-        DatosParking listaVehiculos = new DatosParking();
+        DatosParking coches = new DatosParking();
 
+        // List<CocheModelo> coches = DatosParking.cochesZonaAzul();
         if (session != null) {
+            //Se llama al modelo
 
             String accion = request.getParameter("accion");
 
-            if (accion.equalsIgnoreCase("consultarCoches")) {
+            if (accion.equalsIgnoreCase("consultarAparcamiento")) {
 
+                //session.setAttribute("coches", coches);
+                request.setAttribute("coches", coches.cochesZonaAzul());
+                String url = "/verListaCoches.jsp";
 
-                String url = "/index.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
-                request.setAttribute("cochesAparcados", listaVehiculos.cochesZonaAzul());
+                rd.forward(request, response);
+
+            } else if (accion.equalsIgnoreCase("excedenTiempo")) {
+                // String opcion = request.getParameter("excesotiempo");
+                String url = "/tiempoExcedido.jsp";
+
+                //List<CocheModelo> cochesExceden = DatosParking.vehiculosExceden(true);
+                request.setAttribute("cochesExceden", coches.vehiculosExceden(true));
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+
+            } else if (accion.equalsIgnoreCase("noExcedenTiempo")) {
+
+                //List<CocheModelo> cochesNoExceden = DatosParking.vehiculosExceden(false);
+
+                request.setAttribute("cochesNoExceden", coches.vehiculosExceden(false));
+                String url = "/tiempoNoExcedido.jsp";
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+
+            } else if (accion.equalsIgnoreCase("buscarMatricula")) {
+                //List<CocheModelo> cochesEncontrados = DatosParking.busquedaCoches(request.getParameter("matriculaCoche"));
+                // session.setAttribute("buscarMatricula", cochesEncontrados);
+                String prueba="hola";
+                request.setAttribute("buscarMatricula", coches.busquedaCoches(prueba));
+                String url = "/busquedaPorMatricula.jsp";
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+
+            } else if (accion.equalsIgnoreCase("buscarAparcados")) {
+                //List<CocheModelo> cochesAparcados = DatosParking.busquedaCochesAparcados();
+                request.setAttribute("buscarCochesAparcados", coches.busquedaCochesAparcados());
+                //session.setAttribute("buscarCochesAparcados", cochesAparcados);
+                String url = "/cochesAunAparcados.jsp";
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);
 
             }
-
         } else {
-
+            request.setAttribute("coches", coches.cochesZonaAzul());
             String url = "/index.jsp";
             ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher(url);
-            request.setAttribute("cochesAparcados", listaVehiculos.cochesZonaAzul());
-            rd.forward(request, response);
 
+            RequestDispatcher rd = sc.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
