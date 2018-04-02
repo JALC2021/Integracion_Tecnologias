@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>profesoresServlet</servlet-name>
-        <servlet-class>Controlador.profesoresServlet</servlet-class>
+        <servlet-name>ProfesoresServlet</servlet-name>
+        <servlet-class>Controlador.ProfesoresServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>profesoresServlet</servlet-name>
-        <url-pattern>/profesoresServlet</url-pattern>
+        <servlet-name>ProfesoresServlet</servlet-name>
+        <url-pattern>/ProfesoresServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,6 +14,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>profesoresServlet</welcome-file>
+        <welcome-file>ProfesoresServlet</welcome-file>
     </welcome-file-list>
 </web-app>

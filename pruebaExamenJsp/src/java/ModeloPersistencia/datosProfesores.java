@@ -25,10 +25,11 @@ public class datosProfesores {
     }
 
     public List<Profesor> listaProfesores() throws SQLException {
-        session = HibernateUtil.getSessionFactory().openSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("from profesor");
-        List<Profesor> l = q.list();
+        Query q;
+        q = session.createQuery("from Profesor");
+        List<Profesor> l = (List<Profesor>) q.list();
         tx.commit();
         return l;
     }

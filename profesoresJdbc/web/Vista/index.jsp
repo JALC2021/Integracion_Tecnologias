@@ -1,21 +1,13 @@
 <%-- 
-    Document   : list
-    Created on : 01-abr-2018, 12:43:54
+    Document   : index
+    Created on : 02-abr-2018, 17:57:39
     Author     : jalc
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%--Esto tenemos que importarlo para poder acceder a las lista --%>
-<%@page session="true" %>
-<%@page import="Controlador.profesoresServlet" %>
-<%@page import="Modelo.Profesor"%>
-<%@page import="ModeloPersistencia.datosProfesores" %>
 <%@page import="java.util.List"%>
+<%@page import="Modelo.Profesor" %>
 <%@page import="java.util.Date"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% List<Profesor> listaProfesores = (List<Profesor>) request.getAttribute("profesores");%>
-
 <!DOCTYPE html>
 <html>
     <head>
