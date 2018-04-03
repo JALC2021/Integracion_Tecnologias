@@ -1,6 +1,6 @@
 <%-- 
-    Document   : list
-    Created on : 01-abr-2018, 12:43:54
+    Document   : listEmpty
+    Created on : 03-abr-2018, 19:34:07
     Author     : jalc
 --%>
 
@@ -14,7 +14,6 @@
 <%@page import="java.util.Date"%>
 
 <% List<Profesor> listaProfesores = (List<Profesor>) request.getAttribute("profesores");%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,26 +53,18 @@
             <%}%>
 
         </table>
-        <hr>
         <form name="formularioProfes" action="profesoresServlet" method="post">
             <input type="hidden" name="Accion" value="listNuevos">
             <input type="submit" name="ListarNuevos" value="Ver solo nuevos profesores">
         </form>
-        <hr>
         <form name="formularioProfes" action="profesoresServlet" method="post">
             <input type="hidden" name="Accion" value="formAlta">
             <input type="submit" name="Agregar" value="Agregar Nuevo Profesor">
-        </form>  
+        </form>    
         <hr>
         <form name="formularioProfes" action="profesoresServlet" method="post"> 
-            <input type="hidden" name="Accion" value="formModificar">
-            <input type="submit" name="Modificar Profesor" value="Modificar Profesor">
+            <input type="hidden" name="Accion" value="cancelarAlta">
+            <input type="submit" name="Cancelar" value="Cancelar Modificacion Profesor">
         </form>
-        <hr>
-        <form name="formularioProfes" action="profesoresServlet" method="post"> 
-            <input type="hidden" name="Accion" value="formEliminar">
-            <input type="submit" name="Eliminar Profesor" value="Eliminar Profesor">
-        </form>
-        <hr>
     </body>
 </html>

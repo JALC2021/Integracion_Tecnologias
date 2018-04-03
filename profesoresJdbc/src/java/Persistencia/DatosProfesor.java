@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.tomcat.dbcp.dbcp2.DriverManagerConnectionFactory;
+
 
 /**
  *
@@ -39,11 +39,11 @@ public class DatosProfesor {
     public static Profesor ResultSetToProfesor(ResultSet resultado) throws SQLException {
 
         Profesor profesor = new Profesor();
-        profesor.setApellidos(resultado.getString("dni"));
+        profesor.setDni(resultado.getString("dni"));
         profesor.setNombre(resultado.getString("nombre"));
         profesor.setApellidos(resultado.getString("apellidos"));
         profesor.setFechaAlta(resultado.getDate("fechaAlta"));
-        profesor.setApellidos(resultado.getString("departamento"));
+        profesor.setDepartamento(resultado.getString("departamento"));
 
         return profesor;
     }
