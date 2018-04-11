@@ -11,9 +11,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>welcome</title>
+        
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <title>Epd_06_p2</title>
     </head>
     <body>
-        <h1><s:text name="" /></h1>
+        <h1><s:text name="DATOS CORRECTOS" /></h1>
     </body>
 </html>
