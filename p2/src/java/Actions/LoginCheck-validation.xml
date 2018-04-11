@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    
+    <!--validamos el nombre -->
+    <field name="nombre">
+        <field-validator type="requiredstring">
+            <message>Introduzca un nombre</message>
+        </field-validator>
+    </field>  
+    
+    <!--validamos los apellidos -->
+    <field name="apellidos">
+        <field-validator type="requiredstring">
+            <message>Introduzca los apellidos</message>
+        </field-validator>
+    </field>
+    
+    <!--validamos el password -->
+    <field name="password">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Introduzca el password</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="minLength">6</param>
+            <param name="maxLength">8</param>
+            <message>La contraseña debe tener entre 6  y 8 caracteres</message>
+        </field-validator>
+        
+        <field-validator type="regex">
+            <param name="expression">^\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$</param>
+            <message>La contraseña debe ser alfanumérica, debe tener al menos una letra mayúscula, una letra minúscula, y al menos un número.</message>
+        </field-validator>
+    </field>
+    
+    
+    <!--validamos el email-->
+    <field name="email">
+        <field-validator type="requiredstring">
+            <message>Introduza un email</message>
+        </field-validator>
+        <field-validator type="email">
+            <message>El email no es válido</message>
+        </field-validator>
+    </field>
+    
+    <!--validamos la edad -->
+    <field name="edad">
+        <field-validator type="required">
+            <message>Introduzca la edad</message>
+        </field-validator>
+        
+        <field-validator type="int">
+            <param name="min">0</param>
+            <param name="max">120</param>
+            <message>La edad proporcionada no está dentro del rango ${min} y ${max}</message>
+        </field-validator>
+    </field>
+    
+    <!--validamos la edad -->
+    <field name="telefono">
+        <field-validator type="requiredstring">
+            <message>Introduzca un telefono</message>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[\d{3}-\d{3}-\d{3}]]></param>
+            <message>El telefono debe seguir el formato XXX-XXX-XXX.</message>
+        </field-validator>
+    </field>
+    
+    <!--validamos el comentario -->
+    <field name="comentario">
+        <field-validator type="requiredstring">
+            <message>Introduzca un comentario</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">500</param>
+            <param name="minLength">10</param>
+            <message key="El comentario debe tener como maximo 140 caracteres" />
+        </field-validator>
+    </field>
+
+</validators>
