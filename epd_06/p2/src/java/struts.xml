@@ -1,0 +1,38 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        
+    </package>
+    
+    
+    <!-- creamos un paquete acciones donde controlaremos todas las acciones que declaremos -->
+    
+    <package name="acciones" extends="struts-default">
+        
+        <!-- accion para la pagina proncipal que sera la misma que pongamos en el webxml pero con el /delante de la carpeta -->
+        
+        <action name="">
+            <result>/Vistas/formulario.jsp</result>
+        </action>
+        
+        <!-- acciones al pulsar sobre el submit -->
+    
+        <action name="actionLogin" class="Acciones.datosUsuario">
+            
+            <!-- caso ok se llama al success-->
+            
+            <result name="success">/Vistas/datosOk.jsp</result>
+            
+            <!-- caso ko se llama al error -->
+            
+            <result name="input">/Vistas/formulario.jsp</result>
+            
+        </action>    
+ 
+    </package>
+    
+</struts>

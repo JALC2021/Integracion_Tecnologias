@@ -1,0 +1,88 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+ "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<!--          <s:textfield key="D.n.i" name="dni" />
+//            <s:textfield key="Nombre" name="nombre" />
+//            <s:textfield key="Apellidos" name="apellidos" />
+//            <s:password  key="Contraseña" name="contrasenya" />
+//            <s:textfield type="email" key="Email" name="email" />
+//            <s:date name="fechaNacimiento" format="dd/MM/yyyy" />
+//            <s:textfield key="Numero de Telefono" name="numeroTelefono" type="number"/>
+//            <s:textarea key="Cuentanos mas sobre ti..." name="comentario" />
+-->
+
+<validators>
+    <field name="nombre">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>El nombre del usuario es un campo obligatorio.</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="minLength">4</param>
+            <param name="maxLength">12</param>
+            <message>El nombre del usuario debe tener entre 4 y 12 caracteres</message>
+        </field-validator>
+    </field>
+    
+    <field name="username">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>El username es un campo obligatorio.</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="minLength">6</param>
+            <message>El username debe tener al menos 6 caracteres</message>
+        </field-validator>
+    </field>
+    
+    <field name="password">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>La contraseña es un campo obligatorio.</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="minLength">6</param>
+            <param name="maxLength">8</param>
+            <message>La contraseña debe tener entre 6  y 8 caracteres</message>
+        </field-validator>
+        
+        <field-validator type="regex">
+            <param name="expression">^\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$</param>
+            <message>La contraseña debe ser alfanumérica, debe tener al menos una letra mayúscula, una letra minúscula, y al menos un número.</message>
+        </field-validator>
+    </field>
+    
+    <field name="email">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>El correo electrónico es un campo obligatorio.</message>
+        </field-validator>
+        
+        <field-validator type="email">
+            <message>El correo electrónico está en un formato inválido.</message>
+        </field-validator>
+    </field>
+    
+    <field name="edad">
+        <field-validator type="required">
+            <message>La edad es un campo obligatorio.</message>
+        </field-validator>
+
+        <field-validator type="conversion">
+            <message>La edad debe contener solo números enteros.</message>
+        </field-validator>
+        
+        <field-validator type="int">
+            <param name="min">0</param>
+            <param name="max">200</param>
+            <message>La edad proporcionada no está dentro del rango permitido.</message>
+        </field-validator>
+    </field>
+    
+</validators>
