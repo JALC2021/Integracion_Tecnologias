@@ -1,6 +1,6 @@
 <%-- 
-    Document   : datosOk
-    Created on : 10-abr-2018, 19:59:35
+    Document   : error
+    Created on : 14-mar-2018, 19:56:32
     Author     : jalc
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Epd_06_p2</title>
+        <title>error</title>
     </head>
     <body>
-        <h1>Datos OK</h1>
+        <h1>ERRORRRRRRRRRRRRRr</h1>
     </body>
 </html>
