@@ -7,10 +7,6 @@ package Actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-/**
- *
- * @author jalc
- */
 public class LoginCheck extends ActionSupport {
 
     private String dni;

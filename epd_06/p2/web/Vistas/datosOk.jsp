@@ -1,8 +1,4 @@
-<%-- 
-    Document   : welcome
-    Created on : 14-mar-2018, 19:56:58
-    Author     : jalc
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>

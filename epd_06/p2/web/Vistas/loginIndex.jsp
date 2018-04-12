@@ -1,8 +1,4 @@
-<%-- 
-    Document   : loginIndex
-    Created on : 14-mar-2018, 19:57:29
-    Author     : jalc
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
