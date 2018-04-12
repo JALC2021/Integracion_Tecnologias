@@ -19,18 +19,18 @@ header{
     font-style: normal;
     font-weight: 500;
     font-size: 1em;
-    
+
 }
 
 
-/*input[type=text],input[type=email],input[type=number],input[type=radio],input[type=password],input[type=textarea], input[type=date] select, textarea{
+input[type=text],input[type=email],input[type=number],input[type=radio],input[type=password], input[type=date], input[type=textarea], select, textarea{
     width: 100%;
     padding: 12px;
     border: 1px solid black;
     border-radius: 4px;
     box-sizing: border-box;
     resize: vertical;
-}*/
+}
 
 label {
     padding: 12px 12px 12px 0;
@@ -44,7 +44,7 @@ label {
 }
 
 input[type=submit] {
-    width: 75%;
+    width: 80%;
     background-color: #4CAF50;
     margin-bottom: 5px;
     margin-top: 5px;

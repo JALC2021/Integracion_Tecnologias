@@ -4,6 +4,24 @@
         "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
     
+     <!--validamos el DNI -->
+    <field name="dni">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Introduzca el dni</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <message>El dni debe contener 8 numeros y una letra</message>
+        </field-validator>
+        
+        <field-validator type="regex">
+            <param name="expression"> /^[a-zA-Z0-9]{5,10}$/</param>
+            <message>La contraseña debe ser alfanumérica, debe tener 6 numeros yuna letra.</message>
+        </field-validator>
+    </field>
+    
     <!--validamos el nombre -->
     <field name="nombre">
         <field-validator type="requiredstring">
@@ -38,7 +56,7 @@
         </field-validator>
     </field>
     
-    
+   
     <!--validamos el email-->
     <field name="email">
         <field-validator type="requiredstring">
@@ -50,11 +68,7 @@
     </field>
     
     <!--validamos la edad -->
-    <field name="edad">
-        <field-validator type="required">
-            <message>Introduzca la edad</message>
-        </field-validator>
-        
+    <field name="edad">        
         <field-validator type="int">
             <param name="min">0</param>
             <param name="max">120</param>
@@ -62,7 +76,7 @@
         </field-validator>
     </field>
     
-    <!--validamos la edad -->
+    <!--validamos la telefono -->
     <field name="telefono">
         <field-validator type="requiredstring">
             <message>Introduzca un telefono</message>
@@ -72,7 +86,7 @@
             <message>El telefono debe seguir el formato XXX-XXX-XXX.</message>
         </field-validator>
     </field>
-    
+  
     <!--validamos el comentario -->
     <field name="comentario">
         <field-validator type="requiredstring">

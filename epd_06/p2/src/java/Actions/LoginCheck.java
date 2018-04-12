@@ -6,7 +6,6 @@
 package Actions;
 
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Date;
 
 /**
  *
@@ -14,13 +13,13 @@ import java.util.Date;
  */
 public class LoginCheck extends ActionSupport {
 
+    private String dni;
     private String nombre;
     private String apellidos;
     private String password;
     private String email;
     private int edad;
     private String telefono;
-    private Date fechanac;
     private String comentario;
 
     public LoginCheck() {
@@ -31,6 +30,25 @@ public class LoginCheck extends ActionSupport {
 
         return SUCCESS;
 
+    }
+
+    public LoginCheck(String dni, String nombre, String apellidos, String password, String email, int edad, String telefono, String comentario) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.password = password;
+        this.email = email;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.comentario = comentario;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -79,14 +97,6 @@ public class LoginCheck extends ActionSupport {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Date getFechanac() {
-        return fechanac;
-    }
-
-    public void setFechanac(Date fechanac) {
-        this.fechanac = fechanac;
     }
 
     public String getComentario() {
