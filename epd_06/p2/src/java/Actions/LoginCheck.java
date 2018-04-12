@@ -21,18 +21,12 @@ public class LoginCheck extends ActionSupport {
     private int edad;
     private String telefono;
     private String comentario;
+    private String condiciones;
 
     public LoginCheck() {
     }
 
-    @Override
-    public String execute() throws Exception {
-
-        return SUCCESS;
-
-    }
-
-    public LoginCheck(String dni, String nombre, String apellidos, String password, String email, int edad, String telefono, String comentario) {
+    public LoginCheck(String dni, String nombre, String apellidos, String password, String email, int edad, String telefono, String comentario, String condiciones) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -41,6 +35,15 @@ public class LoginCheck extends ActionSupport {
         this.edad = edad;
         this.telefono = telefono;
         this.comentario = comentario;
+        this.condiciones = condiciones;
+    }
+
+    
+    @Override
+    public String execute() throws Exception {
+
+        return SUCCESS;
+
     }
 
     public String getDni() {
@@ -106,5 +109,14 @@ public class LoginCheck extends ActionSupport {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    public String getCondiciones() {
+        return condiciones;
+    }
+
+    public void setCondiciones(String condiciones) {
+        this.condiciones = condiciones;
+    }
+
 
 }

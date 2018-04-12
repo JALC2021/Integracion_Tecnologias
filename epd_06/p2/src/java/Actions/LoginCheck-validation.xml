@@ -4,7 +4,7 @@
         "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
     
-     <!--validamos el DNI -->
+    <!--validamos el DNI -->
     <field name="dni">
         <field-validator type="requiredstring">
             <param name="trim">true</param>
@@ -13,11 +13,13 @@
         
         <field-validator type="stringlength">
             <param name="trim">true</param>
+            <param name="minLength">9</param>
+            <param name="maxLength">9</param>
             <message>El dni debe contener 8 numeros y una letra</message>
         </field-validator>
         
         <field-validator type="regex">
-            <param name="expression"> /^[a-zA-Z0-9]{5,10}$/</param>
+            <param name="expression"> / ^ ( \ d {8} ) ( [ AZ ] ) $ /</param>
             <message>La contraseña debe ser alfanumérica, debe tener 6 numeros yuna letra.</message>
         </field-validator>
     </field>
@@ -98,5 +100,5 @@
             <message key="El comentario debe tener como maximo 140 caracteres" />
         </field-validator>
     </field>
-
+    
 </validators>

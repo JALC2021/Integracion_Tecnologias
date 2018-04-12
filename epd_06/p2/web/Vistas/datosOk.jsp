@@ -29,6 +29,7 @@
             <label>Edad: <strong><s:property value="edad" /></strong></label><br />
             <label>Telefono: <strong><s:property value="telefono" /></strong></label><br />
             <label>Comentario: <strong><s:property value="comentario" /></strong></label><br />
+            <label>Condiciones: <strong><s:property value="condiciones" /></strong></label><br />
 
         </div>
         <%@include file="footer.jsp" %>

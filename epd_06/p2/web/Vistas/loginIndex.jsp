@@ -16,12 +16,14 @@
     </head>
 
     <body>
+
         <header>
             <h1>Rellene el formulario con sus datos</h1>
         </header>
-        <div class="container">
 
-            <s:form action="loginIndex" method="post">
+
+        <div class="container">
+            <s:form action="loginIndex">
 
                 <s:textfield label="dni" name="dni" />
                 <s:textfield label="nombre" name="nombre" />
@@ -31,11 +33,10 @@
                 <s:textfield label="edad" type="number" name="edad" />
                 <s:textfield label="telefono"  name="telefono" />
                 <s:textfield label="Comentario" type="textarea" name="comentario" />
-                <s:checkbox name="checked" label="Acepta condiciones" />
+                <s:checkbox name="condiciones" label="Acepta condiciones" fieldValue="true" />
                 <s:submit value="Aceptar"/>
 
             </s:form>
-
 
         </div>
         <%@include file="footer.jsp" %>
