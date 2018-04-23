@@ -19,6 +19,7 @@
 
 
         <div class="container">
+            
             <s:form action="loginIndex">
 
                 <s:textfield label="dni" name="dni" />
