@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="/struts-tags" prefix="s" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +21,7 @@
                     <tr>               
                         <td>
                     <tr>
-                        <td class="tdLabel"><label for="filtro_tipoAnimal" class="label">Animal:</label></td>
+                        <td class="tdLabel"><s:label for="filtro_tipoAnimal" class="label">Animal:</s:label></td>
                         <td><s:select name="tipoAnimal" id="filtro_tipoAnimal" list="listaTipoAnimal" listKey="animal" listValue="animal">
 
                             </s:select>
@@ -33,7 +34,7 @@
                     <tr>
                         <td>
                     <tr>
-                        <td colspan="2"><div align="right"><input type="submit" id="filtro_0" value="Filter by animal"/>
+                        <td colspan="2"><div align="right"><s:submit id="filtro_0" value="Filter by animal"/>
                             </div>
                         </td>
                     </tr>
@@ -45,12 +46,12 @@
             </table>
         </s:form>
 
-        <s:form id="listado" name="listado" action="removeListadoTipoAnimal" method="post">
+        <s:form id="listado" name="listado" action="controladorLista" method="post">
             <table class="wwFormTable">
                 <table >            
                     <td>
                     <tr>
-                        <td colspan="2"><div align="right"><input type="submit" id="listado_0" value="Remove filter"/>
+                        <td colspan="2"><div align="right"><s:submit id="listado_0" value="Remove filter"/>
                             </div>
                         </td>
                     </tr>
@@ -77,7 +78,7 @@
                     <s:form id="formulario" name="formulario" action="addAnimal" method="post">
                         <table class="wwFormTable">
                             <tr>
-                                <td colspan="2"><div align="right"><input type="submit" id="formulario_0" value="Add"/>
+                                <td colspan="2"><div align="right"><s:submit id="formulario_0" value="Add"/>
                                     </div></td>
                             </tr>
 
@@ -89,24 +90,24 @@
             </tr>
             <s:iterator value="listaReservaAnimales">
                 <tr>
-        <!--id de los animales-->
+                    <!--id de los animales-->
                     <s:hidden value="id"></s:hidden>
                     <td><s:property value="identificador"></s:property></td>
                     <td><s:property value="tipoAnimal"></s:property></td>
                     <td><s:property value="pais"></s:property></td>
                     <td><s:property value="precio"></s:property></td>
                     <td><s:property value="email"></s:property></td>
-                    <td>
+                        <td>
                         <s:form id="borrarAnimal" name="borrarAnimal" action="deleteAnimal" method="post">
                             <table class="wwFormTable">
-                                <input type="hidden" name="borrar" value="1" id="borrarAnimal_borrar"/>
-                                <tr>
-                                    <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
-                                        </div></td>
-                                </tr>
+                                <s:hidden value="id" name="borrar" value="1" id="borrarAnimal_borrar"></s:hidden>
+                                    <tr>
+                                        <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
+                                            </div></td>
+                                    </tr>
 
 
-                            </table>
+                                </table>
                         </s:form>
 
                     </td>

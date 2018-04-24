@@ -8,7 +8,7 @@
         
     </package>
     
-    <package name="controlador.acciones" namespace="/" extends="struts-default">
+    <package name="acciones" namespace="/" extends="struts-default">
         
         <action name="controladorLista" class="controlador.acciones.controladorLista">
             <result name="success">/Vistas/list.jsp</result>
@@ -18,7 +18,7 @@
             <result name="success">/Vistas/list.jsp</result>
         </action>
         
-        <action name="removeListadoTipoAnimal" class="controlador.acciones.controladorLista">
+        <action name="controladorLista" class="controlador.acciones.controladorLista">
             <result name="success">/Vistas/list.jsp</result>
         </action>
         
