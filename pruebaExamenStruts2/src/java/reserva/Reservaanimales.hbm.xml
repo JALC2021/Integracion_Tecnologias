@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="reserva.Reservaanimales" table="reservaanimales" catalog="itev2_2" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="identificador" type="string">
+            <column name="identificador" length="8" not-null="true" />
+        </property>
+        <property name="tipoAnimal" type="string">
+            <column name="tipo_animal" length="30" not-null="true" />
+        </property>
+        <property name="pais" type="string">
+            <column name="pais" length="30" not-null="true" />
+        </property>
+        <property name="precio" type="int">
+            <column name="precio" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
