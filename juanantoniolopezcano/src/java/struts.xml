@@ -1,0 +1,70 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: aulas -->
+ 
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        
+    </package>
+    
+    <package name="acciones" namespace="/" extends="struts-default">
+        
+        <action name="listSinLogarAction" class="controlador.acciones.listSinLogarAction">
+            
+            <result name="success">/vistas/listSinLogar.jsp</result>
+                
+        </action>
+        
+        <action name="buscar" method="buscar" class="controlador.acciones.listSinLogarAction">
+            
+            <result name="success">/vistas/listSinLogar.jsp</result>
+                
+        </action>
+        
+      <action name="mostrarTodos" class="controlador.acciones.listSinLogarAction">
+            
+            <result name="success">/vistas/listSinLogar.jsp</result>
+                
+        </action>
+        
+        
+        <action name="login" class="controlador.acciones.listSinLogarAction">
+            
+            <result name="success">/vistas/login.jsp</result>
+                
+        </action>
+        
+        
+        <action name="loginOk" class="controlador.acciones.listLogadoAction">
+            
+            <result name="success">/vistas/listLogado.jsp</result>
+                
+        </action>
+        
+          
+        <action name="insert" class="controlador.acciones.listLogadoAction">
+            
+            <result name="success">/vistas/add.jsp</result>
+                
+        </action>
+        
+        <action name="insertOk" class="controlador.acciones.listLogadoAction">
+            
+            <result name="input">/vistas/add.jsp</result>
+            <result name="success">/vistas/listLogado.jsp</result>
+                
+        </action>
+        
+        <!--
+        <action name="borrar" class="controlador.acciones.listSinLogarAction">
+            
+            <result name="success">/vistas/listSinLogar.jsp</result>
+                
+        </action>-->
+        
+        
+    </package>
+</struts>

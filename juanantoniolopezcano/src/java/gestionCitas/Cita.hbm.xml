@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2018 7:31:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionCitas.Cita" table="cita" catalog="it_ev_struts_1718" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="8" />
+            <generator class="assigned" />
+        </id>
+        <property name="empresa" type="string">
+            <column name="empresa" length="50" />
+        </property>
+        <property name="urlEmpresa" type="string">
+            <column name="urlEmpresa" length="100" />
+        </property>
+        <property name="horaCita" type="string">
+            <column name="horaCita" length="5" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
