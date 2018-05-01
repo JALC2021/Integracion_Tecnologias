@@ -15,13 +15,17 @@
     </head>
     <body>
         <h1>Formulario de inserción de citas</h1>
-        <s:form id="insertarCita" name="insertarCita" action="insertOk" method="post">            
-            id: <s:textfield name="id" id="insertarCita_idA"/>
-            empresa: <s:textfield name="empresa" id="insertarCita_empresaA"/>                       
-            Url: <s:textfield name="urlEmpresa" id="insertarCita_urlEmpresaA"/>
-            Hora Cita: <s:textfield name="horaCita" id="insertarCita_horaCitaA"/>
-            Precio: <s:textfield name="precio" id="insertarCita_precioA"/>            
-            <s:submit id="insertarCita_botonA" name="botonA" value="Insertar cita"/>
+        <s:form id="insertarCita" name="insertarCita" action="insertOk" method="post"> 
+            <table>
+
+                <tr><td><s:label>id:</s:label></td><td><s:textfield name="id" id="insertarCita_idA"/></td></tr>
+                <tr><td><s:label>empresa:</s:label></td><td><s:textfield name="empresa" id="insertarCita_empresaA"/></td></tr>                 
+                <tr><td><s:label>Url:</s:label></td><td><s:textfield name="urlEmpresa" id="insertarCita_urlEmpresaA"/></td></tr>
+                <tr><td><s:label>Hora Cita:</s:label></td><td><s:textfield name="horaCita" id="insertarCita_horaCitaA"/></td></tr>
+                <tr><td><s:label>Precio:</s:label></td><td><s:textfield name="precio" id="insertarCita_precioA"/></td></tr>      
+                <tr><td><s:submit id="insertarCita_botonA" name="botonA" value="Insertar cita"/></td></tr>
+
+            </table>
         </s:form>
 
     </body>

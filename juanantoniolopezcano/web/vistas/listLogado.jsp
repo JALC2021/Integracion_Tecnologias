@@ -35,17 +35,19 @@
 
             <s:iterator value="listaCitas">
                 <tr>
-                    <s:hidden value="id">
-                        <td><s:property value="id"></s:property></td>
-                        <td><s:property value="empresa"></s:property></td>                    
-                        <td><s:property value="urlEmpresa"></s:property></td>
-                        <td><s:property value="horaCita"></s:property></td>                        
-                        <td><s:property value="precio"></s:property></td>
-                    </s:hidden>
+<!--                    paso del parametro hidden mal-->
+                    
+                    <s:hidden value="id"></s:hidden>
+                    <td><s:property value="id"></s:property></td>
+                    <td><s:property value="empresa"></s:property></td>                    
+                    <td><s:property value="urlEmpresa"></s:property></td>
+                    <td><s:property value="horaCita"></s:property></td>                        
+                    <td><s:property value="precio"></s:property></td>
 
-                    <th>
-                        <s:form id="borrarCita" name="borrarCita" action="/IT_EV2_STRUTS_1718/borrarCita.action" method="post">
-                            <s:hidden name="idBorrar" value="id" id="borrarCita_idBorrar"/>                                
+                        <th>
+                        <s:form id="borrarCita" name="borrarCita" action="borrar" method="post">
+
+                            <s:hidden name="id" id="borrarCita_idBorrar"/>
                             <s:submit id="borrarCita_0" value="Delete"/>
 
                         </s:form>

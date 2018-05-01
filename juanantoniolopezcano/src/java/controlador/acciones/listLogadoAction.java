@@ -17,11 +17,26 @@ import java.util.List;
  */
 public class listLogadoAction extends ActionSupport {
 
-    CitasDAO cita = new CitasDAO();
-    List<Cita> listaCitas = new ArrayList<Cita>();
+    String id;
     String hora;
 
-    public listLogadoAction() {
+    CitasDAO cita = new CitasDAO();
+    List<Cita> listaCitas = new ArrayList<Cita>();
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public CitasDAO getCita() {
@@ -40,19 +55,17 @@ public class listLogadoAction extends ActionSupport {
         this.listaCitas = listaCitas;
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
     public String buscar(String hora) throws Exception {
 
         listaCitas = cita.busquedaCitaPorHora(hora);
 
         //listaCitas=cita.consultaTodasCitas();
+        return SUCCESS;
+    }
+
+    public String eliminarCita() throws Exception {
+        cita.borrarCita(id);
+        listaCitas = cita.consultaTodasCitas();
         return SUCCESS;
     }
 

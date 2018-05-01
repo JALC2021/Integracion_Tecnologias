@@ -51,19 +51,22 @@
                 
         </action>
         
-        <action name="insertOk" class="controlador.acciones.listLogadoAction">
+       
+<!--       <action name="insert" class="controlador.acciones.listLogadoAction">
+        la clase donde estaba buscando el metodo insertar no era la correcta.-->
+        <action name="insertOk" class="controlador.acciones.addAction">
             
             <result name="input">/vistas/add.jsp</result>
             <result name="success">/vistas/listLogado.jsp</result>
                 
         </action>
         
-        <!--
-        <action name="borrar" class="controlador.acciones.listSinLogarAction">
+        
+        <action name="borrar" class="controlador.acciones.listLogadoAction" method="eliminarCita">
             
-            <result name="success">/vistas/listSinLogar.jsp</result>
+            <result name="success">/vistas/listLogado.jsp</result>
                 
-        </action>-->
+        </action>
         
         
     </package>
