@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<validators>
+
+    <field name="id">
+        <field-validator type="requiredstring">
+            <message key="id.required"></message>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regex">^[A-Z]{4}\d{4}</param>
+            <message key="id.regex"></message>
+        </field-validator>
+    </field>
+ 
+    <field name="empresa">
+        <field-validator type="requiredstring">
+            <message key="empresa.required"></message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">5</param>
+            <message key="empresa.stringlength"></message>
+        </field-validator>
+    </field>
+    <field name="urlEmpresa">
+        <field-validator type="requiredstring">
+            <message key="urlEmpresa.required"></message>
+        </field-validator>
+        <field-validator type="url">
+            <message key="urlEmpresa.url"></message> 
+        </field-validator>
+    </field>
+    <field name="horaCita">
+        <field-validator type="requiredstring">
+            <message key="horaCita.required"></message>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regex">^[0-23]{2}:[0-59]{2}</param>
+            <message key="horaCita.regex"></message> 
+        </field-validator>
+    </field>
+    <field name="precio">
+        <field-validator type="required">
+            <message key="precio.required"></message>
+        </field-validator>
+        <field-validator type="double">
+            <param name="minInclusive">100</param>
+            <param name="maxInclusive">500</param>
+            <message key="precio.double"></message>
+        </field-validator>
+    </field>
+
+</validators>
+

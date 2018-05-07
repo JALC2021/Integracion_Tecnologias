@@ -12,62 +12,70 @@
     
     <package name="acciones" namespace="/" extends="struts-default">
         
-        <action name="listSinLogarAction" class="controlador.acciones.listSinLogarAction">
+        <action name="listaCitasAction" class="controlador.acciones.listaCitasAction">
             
-            <result name="success">/vistas/listSinLogar.jsp</result>
+            <result name="success">/vistas/listaCitas.jsp</result>
                 
         </action>
         
-        <action name="buscar" method="buscar" class="controlador.acciones.listSinLogarAction">
+        <action name="buscar" method="buscar" class="controlador.acciones.listaCitasAction">
             
-            <result name="success">/vistas/listSinLogar.jsp</result>
-                
-        </action>
-        
-      <action name="mostrarTodos" class="controlador.acciones.listSinLogarAction">
-            
-            <result name="success">/vistas/listSinLogar.jsp</result>
+            <result name="success">/vistas/listaCitas.jsp</result>
                 
         </action>
         
         
-        <action name="login" class="controlador.acciones.listSinLogarAction">
+        <action name="mostrarTodos" class="controlador.acciones.listaCitasAction">
+            
+            <result name="success">/vistas/listaCitas.jsp</result>
+                
+        </action>
+       
+        
+        
+        <action name="login" class="controlador.acciones.listaCitasAction">
             
             <result name="success">/vistas/login.jsp</result>
                 
         </action>
         
         
-        <action name="loginOk" class="controlador.acciones.listLogadoAction">
+        <action name="loginOk" class="controlador.acciones.listaCitasAction">
             
-            <result name="success">/vistas/listLogado.jsp</result>
+            <result name="success">/vistas/listaCitas.jsp</result>
                 
         </action>
         
           
-        <action name="insert" class="controlador.acciones.listLogadoAction">
+        <action name="insert" class="controlador.acciones.listaCitasAction">
             
             <result name="success">/vistas/add.jsp</result>
                 
         </action>
         
        
-<!--       <action name="insert" class="controlador.acciones.listLogadoAction">
-        la clase donde estaba buscando el metodo insertar no era la correcta.-->
+        <!--       <action name="insert" class="controlador.acciones.listLogadoAction">
+        la clase donde estaba buscando el metodo insertar no era la correcta. corregido-->
         <action name="insertOk" class="controlador.acciones.addAction">
             
             <result name="input">/vistas/add.jsp</result>
-            <result name="success">/vistas/listLogado.jsp</result>
+            <result name="success">/vistas/listaCitas.jsp</result>
                 
         </action>
         
-        
-        <action name="borrar" class="controlador.acciones.listLogadoAction" method="eliminarCita">
+        <!--        estaba comentado por errores corregido-->
+        <action name="borrar" class="controlador.acciones.listaCitasAction" method="eliminarCita">
             
-            <result name="success">/vistas/listLogado.jsp</result>
+            <result name="success">/vistas/listaCitas.jsp</result>
                 
         </action>
         
-        
+        <!--                añadido  -->
+        <action name="deslogar" class="controlador.acciones.listaCitasAction" method="deslogarse">
+            
+            <result name="success">/vistas/listaCitas.jsp</result>
+                
+        </action>
+ 
     </package>
 </struts>

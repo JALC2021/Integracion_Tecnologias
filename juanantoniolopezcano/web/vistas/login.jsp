@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@page session="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,10 +14,10 @@
         <title>Login</title>
     </head>
     <body>
-        <h1>Login</h1>
+        <h1><s:text name="Login"></s:text></h1>
         <s:form id="login" name="login" action="loginOk" method="post">
-            <s:textfield name="usuario" value="" id="login_usuario"/>
-            <s:password  name="password" id="login_password"/>
+            <s:textfield label="Usuario" name="usuario" value="" id="login_usuario"/>
+            <s:password label="Password"  name="password" id="login_password"/>
             <s:submit id="login_0" value="Login"/>
 
         </s:form>

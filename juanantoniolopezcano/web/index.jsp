@@ -6,4 +6,4 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<s:action name="listSinLogarAction" namespace="/" executeResult="true"></s:action>
+<s:action name="listaCitasAction" namespace="/" executeResult="true"></s:action>

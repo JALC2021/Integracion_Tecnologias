@@ -94,8 +94,6 @@ public class addAction extends ActionSupport {
         this.listaCitas = listaCitas;
     }
 
-   
-
     @Override
     public String execute() throws Exception {
 
