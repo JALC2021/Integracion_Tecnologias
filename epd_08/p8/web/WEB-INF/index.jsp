@@ -25,6 +25,7 @@
             };
 
             List<Pelicula> lpeliculas = p1.findAll_XML(l);
+            
             for (Pelicula p : lpeliculas) {
 
         %><h3><%=p.toString()%></h3>
