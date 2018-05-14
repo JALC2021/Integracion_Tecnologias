@@ -17,16 +17,18 @@
     <body>
         <%
             NewJerseyClientPelicula p1 = new NewJerseyClientPelicula();
-            GenericType<List<Pelicula>> lista = new GenericType<List<Pelicula>>() {
-            };
+            GenericType<List<Pelicula>> lista = new GenericType<List<Pelicula>>() {};
             List<Pelicula> listaPeliculas = p1.findAll_XML(lista);
-            for (Pelicula p : listaPeliculas) {
-        %><h3><%=p.getId()%></h3> 
+
+            for (Pelicula p : listaPeliculas) {%>
+
+        <h3><%=p.getId()%></h3> 
         <h3><%=p.getNombre()%></h3>
         <h3><%=p.getFechaEstreno()%></h3>
         <h3><%=p.getFechaVideo()%></h3>
         <h3><%=p.getIdioma()%></h3>
         <h3><%=p.getPais()%></h3>
+
         <%}
 
             Pelicula p2 = new Pelicula();
