@@ -40,27 +40,16 @@
             p2.setIdioma("Español");
             p2.setPais("España");
 
-//            p1.create_XML(p2);
+            p1.create_XML(p2);
             listaPeliculas = p1.findAll_XML(lista);
-
-
-            for (Pelicula p : listaPeliculas) {%>
-        <h3><%=p.getId()%></h3> 
-        <h3><%=p.getNombre()%></h3>
-        <h3><%=p.getFechaEstreno()%></h3>
-        <h3><%=p.getFechaVideo()%></h3>
-        <h3><%=p.getIdioma()%></h3>
-        <h3><%=p.getPais()%></h3>
-        <%}
 
 //            p2.setIdioma("Aleman");
 //            
 //            p1.edit_XML(p2,Integer.toString(p2.getId()));
 //              listaPeliculas=p1.findAll_XML(lista);
-
 //String st=String.valueOf(p2.getId());
-String str=Integer.toString(p2.getId());
-out.print(str);
+//String str=Integer.toString(p2.getId());
+//out.print(str);
 // p1.remove(String.valueOf(p2.getId()));
             p1.close();
 
