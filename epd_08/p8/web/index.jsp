@@ -10,12 +10,13 @@
 <%@page import="javax.ws.rs.core.GenericType"%>
 <%@page import="java.util.List"%>
 <%@page import="Dao.NewJerseyClientPelicula"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Peliculas</title>
     </head>
     <body>
 
@@ -45,13 +46,23 @@
             </tr>
 
 
-            <%  for (Pelicula p : listaPeliculas) {%>
+            <%  for (Pelicula p : listaPeliculas) {
+
+                    SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+                    Date festreno = p.getFechaEstreno();
+                    Date fvideo = p.getFechaVideo();
+
+                    String fEstreno = f.format(festreno);
+                    String fVideo = f.format(fvideo);
+
+            %>
 
             <tr>
                 <td><%= p.getId()%></td>
                 <td><%= p.getNombre()%></td>
-                <td><%= p.getFechaEstreno()%></td>
-                <td><%= p.getFechaVideo()%></td>
+                <td><%= fEstreno%></td>
+                <td><%= fVideo%></td>
                 <td><%= p.getIdioma()%></td>
                 <td><%= p.getPais()%></td>
                 <td>
@@ -61,9 +72,9 @@
                     </form>
                 </td>
                 <td>
-                    <form method="post" action="update.jsp">
-                        <input type="submit" name="update" value="Actualizar">
-                        <input type="hidden" value="<%= p.getId()%>" name="idUpdate">
+                    <form method="post" action="edit.jsp">
+                        <input type="submit" name="edit" value="Editar Pelicula">
+                        <input type="hidden" value="<%= p.getId()%>" name="idEdit">
                     </form>
                 </td>
             <tr>

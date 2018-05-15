@@ -1,5 +1,5 @@
 <%-- 
-    Document   : update
+    Document   : edit
     Created on : 14-may-2018, 22:05:50
     Author     : jalc
 --%>
@@ -14,11 +14,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Peliculas</title>
     </head>
     <body>
 
-        <form name="insertPelicula" method="post">
+        <form name="editPelicula" method="post">
+
+            <input type="hidden" value="<%=request.getParameter("idEdit")%>" name="idEdit">
 
             Nombre: <input type="text" name="nombre"><br>
             Fecha Estreno: <input type="date" name="fechaEstreno" required><br>
@@ -271,14 +273,16 @@
                 <option value="Zambia" id="ZM">Zambia</option>
                 <option value="Zimbabue" id="ZW">Zimbabue</option>
             </select><br>
-            <input type="submit" name="insertPelicula" value="Insertar Pelicula">
+            <input type="submit" name="editPelicula" value="Editar Pelicula">
         </form>
 
         <%
-            if (request.getParameter("insertPelicula") != null) {
+            if (request.getParameter("editPelicula") != null) {
                 NewJerseyClientPelicula jp = new NewJerseyClientPelicula();
 
-                Integer id = 0;
+                String idString = request.getParameter("idEdit");
+
+                Integer id = Integer.valueOf(idString);
 
                 String nombre = request.getParameter("nombre");
 
@@ -292,9 +296,8 @@
                 String pais = request.getParameter("pais");
 
                 Pelicula p = new Pelicula(id, nombre, fechaEstreno, fechaVideo, idioma, pais);
-                jp.create_XML(p);
-                //response.sendRedirect("index.jsp");
-                %><jsp:forward page="index.jsp"></jsp:forward><%
+                jp.edit_XML(p, idString);
+                response.sendRedirect("index.jsp");
             }
         %>
 
