@@ -21,6 +21,7 @@ public class GeneradorPassword {
      *Devolvemos una pass conelnumero de cara teres que introduzcamos en la vista.
      *
      */
+    
     String construccionPass = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz";
 
     @WebMethod(operationName = "generatorPass")
