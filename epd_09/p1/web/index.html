@@ -6,11 +6,30 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>p1_epd9</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>Generador de Password</h1>
+        <script type="text/javascript">
+
+            var xhttp = new XMLHttpRequest();
+            var l = 10;
+            xhttp.open("POST", "http://localhost:8080/ej1/GeneradorPassword", false);
+
+            var request = '<?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'
+                    + '<SOAP-ENV:Header/>'
+                    + '<S:Body>'
+                    + '<ns2:generatorPass xmlns:ns2="http://webService/">'
+                    + '<pass>5</pass>'
+                    + '</ns2:generatorPass>'
+                    + '</S:Body>'
+                    + '</S:Envelope>';
+            xhttp.setRequestHeader("Content-Type", "text/xml");
+            xhttp.send(request);
+            document.write("<p>El resultado es el siguiente: <strong>" + xhttp.responseText + '</strong></p>');
+
+        </script>
     </body>
 </html>
