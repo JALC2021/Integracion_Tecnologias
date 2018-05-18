@@ -293,8 +293,8 @@
 
                 Pelicula p = new Pelicula(id, nombre, fechaEstreno, fechaVideo, idioma, pais);
                 jp.create_XML(p);
-                //response.sendRedirect("index.jsp");
-                %><jsp:forward page="index.jsp"></jsp:forward><%
+                response.sendRedirect("index.jsp");
+
             }
         %>
 
