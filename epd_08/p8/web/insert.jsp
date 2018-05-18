@@ -8,6 +8,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Dao.NewJerseyClientPelicula"%>
+<%@page import="javax.ws.rs.client.ClientResponseContext"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,9 +18,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-
-        <form name="insertPelicula" method="post">
-
+        <h1>Insertar Peliculas</h1>
+        <form method="post" action="#">
             Nombre: <input type="text" name="nombre"><br>
             Fecha Estreno: <input type="date" name="fechaEstreno" required><br>
             Fecha Video: <input type="date" name="fechaVideo" required><br>
@@ -276,7 +276,6 @@
 
         <%
             if (request.getParameter("insertPelicula") != null) {
-                NewJerseyClientPelicula jp = new NewJerseyClientPelicula();
 
                 Integer id = 0;
 
@@ -292,10 +291,12 @@
                 String pais = request.getParameter("pais");
 
                 Pelicula p = new Pelicula(id, nombre, fechaEstreno, fechaVideo, idioma, pais);
-                jp.create_XML(p);
+                NewJerseyClientPelicula jpInsert = new NewJerseyClientPelicula();
+                jpInsert.create_XML(p);
                 response.sendRedirect("index.jsp");
 
             }
+
         %>
 
     </body>

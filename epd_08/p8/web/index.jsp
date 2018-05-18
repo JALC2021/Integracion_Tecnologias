@@ -10,6 +10,7 @@
 <%@page import="javax.ws.rs.core.GenericType"%>
 <%@page import="java.util.List"%>
 <%@page import="Dao.NewJerseyClientPelicula"%>
+<%@page import="javax.ws.rs.client.ClientResponseContext"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +20,7 @@
         <title>Peliculas</title>
     </head>
     <body>
-
+        <h1>Lista de Peliculas</h1>
         <%
             NewJerseyClientPelicula p1 = new NewJerseyClientPelicula();
             GenericType<List<Pelicula>> lista = new GenericType<List<Pelicula>>() {
@@ -88,6 +89,7 @@
                 String id = request.getParameter("idDelete");
                 p1.remove(id);
                 response.sendRedirect("index.jsp");
+               
             }
         %>
     </body>

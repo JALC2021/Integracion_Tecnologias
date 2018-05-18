@@ -4,10 +4,12 @@
     Author     : jalc
 --%>
 
+<%@page import="javax.ws.rs.core.GenericType"%>
 <%@page import="Entity.Pelicula"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Dao.NewJerseyClientPelicula"%>
+<%@page import="javax.ws.rs.client.ClientResponseContext"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,31 +19,49 @@
         <title>Edit Peliculas</title>
     </head>
     <body>
-
-        <form name="editPelicula" method="post">
-
+        <h1>Editar Pelicula</h1>
+        <form method="post">
             <input type="hidden" value="<%=request.getParameter("idEdit")%>" name="idEdit">
+            <%
+                String idHiden = request.getParameter("idEdit");
+                NewJerseyClientPelicula p1 = new NewJerseyClientPelicula();
+                GenericType<Pelicula> pBbDd = new GenericType<Pelicula>() {
+                };
+                Pelicula pbbdd = p1.find_XML(pBbDd, idHiden);
 
-            Nombre: <input type="text" name="nombre"><br>
-            Fecha Estreno: <input type="date" name="fechaEstreno" required><br>
-            Fecha Video: <input type="date" name="fechaVideo" required><br>
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+                Date festreno = pbbdd.getFechaEstreno();
+                Date fvideo = pbbdd.getFechaVideo();
+
+                String feditEstreno = f.format(festreno);
+                String feditVideo = f.format(fvideo);
+
+
+            %>
+
+            Nombre: <input type="text" name="nombre" value="<%=pbbdd.getNombre()%>"><br> 
+            Fecha Estreno: <input type="text" name="fechaEstrenoBBDD" value="<%=feditEstreno%>"/>&nbsp;<input type="date" name="fechaEstreno" required>&nbsp;Modifique la fecha o introduzca la misma.<br>
+            Fecha Video: <input type="text" name="fechaVideoBBDD" value="<%=feditVideo%>"/>&nbsp;<input type="date" name="fechaVideo" required>&nbsp;Modifique la fecha o introduzca la misma.<br>
             Idioma: <select name="idioma">
+                <option value="<%=pbbdd.getIdioma()%>" id="pbbdd"><%=pbbdd.getIdioma()%></option>
                 <option value="Ingles" id="ingles">Ingles</option>
                 <option value="Chino" id="chino">Chino</option>
-                <option value="Español" id="espanol">Español</option>
+                <option value="Espa&ntilde;ol" id="espanol">Espa&ntilde;ol</option>
                 <option value="Ruso" id="ruso">Ruso</option>
                 <option value="Frances" id="frances">Frances</option>
                 <option value="Aleman" id="aleman">Aleman</option>
             </select><br>
 
             Pais: <select name="pais">
-                <option value="Afganistán" id="AF">Afganistan</option>
+                <option value="<%=pbbdd.getPais()%>" id="pbbdd"><%=pbbdd.getPais()%></option>
+                <option value="Afganistan" id="AF">Afganistan</option>
                 <option value="Albania" id="AL">Albania</option>
                 <option value="Alemania" id="DE">Alemania</option>
                 <option value="Andorra" id="AD">Andorra</option>
                 <option value="Angola" id="AO">Angola</option>
                 <option value="Anguila" id="AI">Anguila</option>
-                <option value="Antártida" id="AQ">Antártida</option>
+                <option value="Antartida" id="AQ">Antártida</option>
                 <option value="Antigua y Barbuda" id="AG">Antigua y Barbuda</option>
                 <option value="Antillas holandesas" id="AN">Antillas holandesas</option>
                 <option value="Arabia Saudí" id="SA">Arabia Saudí</option>
@@ -99,10 +119,10 @@
                 <option value="Eritrea" id="ER">Eritrea</option>
                 <option value="Eslovaquia" id="SK">Eslovaquia</option>
                 <option value="Eslovenia" id="SI">Eslovenia</option>
-                <option value="España" id="ES">España</option>
+                <option value="Espa&ntilde;a" id="ES">Espa&ntilde;a</option>
                 <option value="Estados Unidos" id="US">Estados Unidos</option>
                 <option value="Estonia" id="EE">Estonia</option>
-                <option value="c" id="ET">Etiopía</option>
+                <option value="Etiopia" id="ET">Etiopía</option>
                 <option value="Ex-República Yugoslava de Macedonia" id="MK">Ex-República Yugoslava de Macedonia</option>
                 <option value="Filipinas" id="PH">Filipinas</option>
                 <option value="Finlandia" id="FI">Finlandia</option>
@@ -278,7 +298,6 @@
 
         <%
             if (request.getParameter("editPelicula") != null) {
-                NewJerseyClientPelicula jp = new NewJerseyClientPelicula();
 
                 String idString = request.getParameter("idEdit");
 
@@ -296,8 +315,10 @@
                 String pais = request.getParameter("pais");
 
                 Pelicula p = new Pelicula(id, nombre, fechaEstreno, fechaVideo, idioma, pais);
-                jp.edit_XML(p, idString);
+                NewJerseyClientPelicula jpEdit = new NewJerseyClientPelicula();
+                jpEdit.edit_XML(p, idString);
                 response.sendRedirect("index.jsp");
+
             }
         %>
 
