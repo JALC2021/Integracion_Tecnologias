@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="https://underscore-min"></script>
+
+    </head>
+    <body>
+        <h1>metodo fecha</h1>
+        <script type="text/javascript">
+            //CHULETA
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:8080/ejercicio1ExamenWebService/calcularFecha", false);
+
+            var fecha = "23-05-2018";
+            var request = '<?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'
+                    + '<SOAP-ENV:Header/>'
+                    + '<S:Body>'
+                    + '<ns2:comprobarFecha xmlns:ns2="http://servidorWebServiceSoap/">'
+                    + ' <fecha>23-05-2018</fecha>'
+                    + '</ns2:comprobarFecha>'
+                    + '</S:Body>'
+                    + '</S:Envelope>';
+
+            //CHULETA
+            xhttp.setRequestHeader("Content-Type", "text/xml");
+            xhttp.send();
+            //CHULETA
+            document.write(_.unescape("<h1>" + xhttp.responseText + "</h1>"));
+
+        </script>
+        <hr />
+        <h1>metodo fecha y dia</h1>
+        <script type="text/javascript">
+            var xhttp2 = new XMLHttpRequest();
+            xhttp2.open("POST", "http://localhost:8080/ejercicio1ExamenWebService/calcularFecha", false);
+            var fecha = "23-05-2018";
+            var dia = "lunes";
+            var request2 = '<?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'
+                    + '<SOAP-ENV:Header/>'
+                    + '<S:Body>'
+                    + '<ns2:comprobarFechayDia xmlns:ns2="http://servidorWebServiceSoap/">'
+                    + ' <fecha>24-05-2018</fecha>'
+                    + ' <dia>jueves</dia>'
+                    + ' </ns2:comprobarFechayDia>'
+                    + '</S:Body>'
+                    + '</S:Envelope>';
+
+            //CHULETA
+            xhttp2.setRequestHeader("Content-Type", "text/xml");
+            xhttp2.send(request2);
+            //CHULETA
+            document.write(_.escape("<h1>" + xhttp2.responseText + "</h1>"));
+        </script>
+
+    </body>
+</html>
