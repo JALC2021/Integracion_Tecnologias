@@ -11,6 +11,21 @@
 <%@page import="javax.ws.rs.core.GenericType"%>
 <%@page import="Dao.NewJerseyClientGames"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    if (request.getParameter("insertJuego") != null) {
+        //CHULETAAAAAAA
+        Integer id = 0;
+        String name = request.getParameter("nombre");
+        String console = request.getParameter("consola");
+        String fecha = request.getParameter("fecha");
+        Date year = java.sql.Date.valueOf(fecha);
+        //Date year = new Date("2000-12-12");
+        NewJerseyClientGames jibsert = new NewJerseyClientGames();
+        Games j = new Games(id, name, console, year);
+        jibsert.create_XML(j);
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -91,22 +106,9 @@
 
             <input type="submit" name="insertJuego" value="Insertar juego">
         </form>
-        <%
-                if (request.getParameter("insertJuego") != null) {
-                    //CHULETAAAAAAA
-                    Integer id = 0;
-                    String name = request.getParameter("nombre");
-                    String console = request.getParameter("consola");
-                    String fecha = request.getParameter("fecha");
-                    //Date year = java.sql.Date.valueOf(fecha);
-                    Date year = new Date("2000-12-12");
-                    NewJerseyClientGames jibsert = new NewJerseyClientGames();
-                    Games j = new Games(id, name, console, year);
-                    jibsert.create_XML(j);
-                    response.sendRedirect("index.jsp");
-                }
 
-            }%>
+
+        <%}%>
 
 
 
