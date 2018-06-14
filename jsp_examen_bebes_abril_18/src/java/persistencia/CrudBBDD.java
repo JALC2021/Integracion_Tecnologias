@@ -49,14 +49,14 @@ public class CrudBBDD {
 
     }
     
-    public Usuario compruebaUsuario(String usuario, String Password){
+    public Usuario compruebaUsuario(String usuario, String password){
         session=NewHibernateUtil.getSessionFactory().openSession();
         org.hibernate.Transaction tx=session.beginTransaction();
         Query q;
-        q=session.createQuery("from Usuario p where p.password = :password");
+        q=session.createQuery("FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password");
         //SELECT `usuario`,`password` FROM `usuario` WHERE `usuario` = 'jose' AND `password`='jose'
         //q=setString(string, string1);
-        return null;
+        return usuario;
     }
 
 }
