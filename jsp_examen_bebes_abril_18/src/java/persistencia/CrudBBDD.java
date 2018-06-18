@@ -48,15 +48,38 @@ public class CrudBBDD {
         return listaBebes;
 
     }
-    
-    public Usuario compruebaUsuario(String usuario, String password){
-        session=NewHibernateUtil.getSessionFactory().openSession();
-        org.hibernate.Transaction tx=session.beginTransaction();
+
+    public Usuario compruebaUsuario(String usuario, String password) throws SQLException {
+        session = NewHibernateUtil.getSessionFactory().openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
         Query q;
-        q=session.createQuery("FROM Usuario u WHERE u.usuario = :usuario AND u.password = :password");
-        //SELECT `usuario`,`password` FROM `usuario` WHERE `usuario` = 'jose' AND `password`='jose'
-        //q=setString(string, string1);
-        return usuario;
+        //q = session.createQuery("from Usuario u where u.usuario ='" + usuario + "' and u.password ='" + password + "'");
+        q = session.createQuery("from Usuario u where u.usuario =:usuario and u.password =:password");
+        q.setString("usuario", usuario);
+        q.setString("password", password);
+        Usuario usuarioBBDD = (Usuario) q.uniqueResult();
+        tx.commit();
+        return usuarioBBDD;
+    }
+
+    public List<Bebe> sigueIncubadora() throws SQLException {
+        session = NewHibernateUtil.getSessionFactory().openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        Query q;
+        q = session.createQuery("from Bebe where horaSalidaIncubadora = NULL");
+        List<Bebe> listaIncubadora = q.list();
+        tx.commit();
+        return listaIncubadora;
+    }
+
+    public void deleteBebe(String dni) throws SQLException {
+        session = NewHibernateUtil.getSessionFactory().openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        Query q;
+        q = session.createQuery("delete Bebe where dni = :dni");
+        q.setString("dni", dni);
+        q.executeUpdate();
+        tx.commit();
     }
 
 }

@@ -4,7 +4,19 @@
     Author     : jalc
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- page con la session a true  --%>
+<%@page session="true" %>
+<%--recojo el nombre de usuario de la variable de session--%>
+<%String usuarioSession = (String) session.getAttribute("usuario");%>
+<%-- page portamos el modelo con la clase  --%>
+<%@page import="modelo.Bebe" %>
+<%-- declaramos la lista a mostrar llamando al controlador ya que el parametro que le pasamos 
+al request.getAttribute es el nombre que nos hemos inventado en el controlador y 
+hacemos el casting delante del request--%>
+<%List<Bebe> listaBebesLogin = (List<Bebe>) request.getAttribute("listaBebesBBDD");%>
+<%List<Bebe> listaBebesIncubadora = (List<Bebe>) request.getAttribute("bebesIncubadora");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,8 +26,8 @@
     <body>
         <h1>Gestión de bebés</h1>
 
-        <h2>Bienvenido/a Jose Luis a la gestión de bebés</h2>
-        <form action="Controlador01" method="post">
+        <h2>Bienvenido/a <%=usuarioSession%></h2>
+        <form action="Controlador" method="post">
             <input type="hidden" name="accion" value="deslogar" />
             <input type="submit" name="Deslogar" value="Deslogar" />
         </form>        
@@ -30,7 +42,7 @@
                 <th>Hora salida incubadora</th>
                 <th>
 
-                    <form action="Controlador01" method="post">
+                    <form action="Controlador" method="post">
                         <input type="hidden" name="accion" value="formAlta" />
                         <input type="submit" name="Alta" value="Alta de bebés" />
                     </form>
@@ -38,17 +50,29 @@
                 </th>
             </tr>
 
-
+            <%
+                if (listaBebesLogin.isEmpty()) {
+            %><tr><td>No hay beb&eacute;s registrados</td></tr><%
+            } else {
+                for (Bebe b : listaBebesLogin) {%>
             <tr>
+                <td><%=b.getDni()%></td>
+                <td><%=b.getNombrePadre()%></td>
+                <td><%=b.getNombreMadre()%></td>
+                <td><%=b.getHoraNacimiento()%></td>
+                <%-- comprobamos que la hora de salida no sea nula, en caso contrario 
+mostraremos un mensaje de error--%>
+                <td><%if (b.getHoraSalidaIncubadora() == null) {
+                        b.setHoraSalidaIncubadora("sigue en la incubadora");
+                    %><%=b.getHoraSalidaIncubadora()%>
+                    <% } else {%>
 
-                <td>12345678A</td>
-                <td>Antonio Ruiz</td>
-                <td>Antonia Maestre</td>
-                <td>18:30</td>
-                <td>Sigue en la incubadora</td>
+                    <%=b.getHoraSalidaIncubadora()%>
+                </td>
+                <%}%>
                 <td>                     
-                    <form action="Controlador01" method="post">
-                        <input type="hidden" name="dni" value="12345678A" />
+                    <form action="Controlador" method="post">
+                        <input type="hidden" name="dni" value="<%=b.getDni()%>" />
                         <input type="hidden" name="accion" value="borrar" />
                         <input type="submit" name="Borrar" value="Borrar" />
                     </form>
@@ -56,61 +80,15 @@
                 </td>
             </tr>
 
-            <tr>
-
-                <td>22222222C</td>
-                <td>Luis Paco</td>
-                <td>Marta Gomez</td>
-                <td>15:25</td>
-                <td>Sigue en la incubadora</td>
-                <td>                     
-                    <form action="Controlador01" method="post">
-                        <input type="hidden" name="dni" value="22222222C" />
-                        <input type="hidden" name="accion" value="borrar" />
-                        <input type="submit" name="Borrar" value="Borrar" />
-                    </form>
-
-                </td>
-            </tr>
-
-            <tr>
-
-                <td>33333333D</td>
-                <td>Jacinto Cino</td>
-                <td>Luisa Diaz</td>
-                <td>07:30</td>
-                <td>11:25</td>
-                <td>                     
-                    <form action="Controlador01" method="post">
-                        <input type="hidden" name="dni" value="33333333D" />
-                        <input type="hidden" name="accion" value="borrar" />
-                        <input type="submit" name="Borrar" value="Borrar" />
-                    </form>
-
-                </td>
-            </tr>
-
-            <tr>
-
-                <td>87654321B</td>
-                <td>Pedro Martin</td>
-                <td>Andrea Sosa</td>
-                <td>10:20</td>
-                <td>18:21</td>
-                <td>                     
-                    <form action="Controlador01" method="post">
-                        <input type="hidden" name="dni" value="87654321B" />
-                        <input type="hidden" name="accion" value="borrar" />
-                        <input type="submit" name="Borrar" value="Borrar" />
-                    </form>
-
-                </td>
-            </tr>
+            <%
+                    }
+                }
+            %>
 
         </table>
 
 
-        <form action="Controlador01" method="post">
+        <form action="Controlador" method="post">
             <input type="hidden" name="accion" value="bebesIncubadora" />
             <input type="submit" name="bntIncubadora" value="Mostrar bebés que están en la incubadora" />
         </form>        

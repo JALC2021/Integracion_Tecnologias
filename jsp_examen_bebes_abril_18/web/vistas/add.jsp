@@ -14,9 +14,7 @@
     <body>
         <h1>Alta de un bebés</h1>
 
-
-
-        <form action="Controlador01" method="post"> 
+        <form action="Controlador" method="post"> 
 
             <table cellspacing=1 cellpadding=2 bgcolor="#FFFFFF">
                 <tr>
@@ -58,7 +56,7 @@
                 </tr>
             </table>
         </form>
-        <form action="Controlador01" method="post"> 
+        <form action="Controlador" method="post"> 
             <input type="hidden" name="accion" value="cancelarAlta">
             <input type="submit" name="Cancelar" value="Cancelar alta de bebé">
         </form>

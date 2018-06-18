@@ -4,6 +4,9 @@
     Author     : jalc
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- page con la session a true  --%>
+<%@page session="true" %>
+<%String mensaje = (String) request.getAttribute("mensaje");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,30 +21,31 @@
                 height: 25px;
             }
         </style>
-        <title>Gestión de bebés</title>
-    </head>
-    <body>
-        <h1>Gestión de bebés</h1>
-        <form action="Controlador" method="POST">
+    <% if (mensaje != null) {%><p>Usuario o Password incorrecto</p><%}%>
+    <title>Gestión de bebés</title>
+</head>
+<body>
+    <h1>Gestión de bebés</h1>
+    <form action="Controlador" method="POST">
 
-            <fieldset>
-                <legend>Regístrese para acceder a la aplicación:</legend>
-                <table class="formulario">
-                    <tr>
-                        <td>Usuario:</td>
-                        <td><input type="text" name="usuario" /></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><input type="password" name="password" /></td>
-                    </tr>                    
-                    <tr>
-                        <td><input type="submit" name="btnAceptar" value="Aceptar"/></td>
-                        <td><input type="reset" name="btnCancelar" value="Cancelar"/></td>
-                    <input type="hidden" name="accion" value="registro"/>
-                    </tr>
-                </table>
-            </fieldset>
-        </form> 
-    </body>
+        <fieldset>
+            <legend>Regístrese para acceder a la aplicación:</legend>
+            <table class="formulario">
+                <tr>
+                    <td>Usuario:</td>
+                    <td><input type="text" name="usuario" /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" /></td>
+                </tr>                    
+                <tr>
+                    <td><input type="submit" name="btnAceptar" value="Aceptar"/></td>
+                    <td><input type="reset" name="btnCancelar" value="Cancelar"/></td>
+                <input type="hidden" name="accion" value="registro"/>
+                </tr>
+            </table>
+        </fieldset>
+    </form> 
+</body>
 </html>
