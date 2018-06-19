@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Alta de un bebés</title>
+        <title>Alta de un beb&eacute;s</title>
     </head>
     <body>
         <h1>Alta de un bebés</h1>
