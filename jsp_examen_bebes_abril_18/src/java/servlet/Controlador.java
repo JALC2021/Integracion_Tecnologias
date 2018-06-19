@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Bebe;
 import modelo.Usuario;
 import persistencia.CrudBBDD;
 
@@ -111,6 +112,32 @@ public class Controlador extends HttpServlet {
 
                 String url = "/vistas/add.jsp";
                 //estas tres lineas siempre son asi
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+
+            } else if (accion.equalsIgnoreCase("altaBebe")) {
+
+                String dni = request.getParameter("dni");
+                String nombrePadre = request.getParameter("nombrePadre");
+                String nombreMadre = request.getParameter("nombreMadre");
+                String horaNacimiento = request.getParameter("horaNacimiento");
+                String minutosNacimiento = request.getParameter("minNacimiento");
+                String horaIncubadora = request.getParameter("horaIncubadora");
+                String minutosIncubadora = request.getParameter("minIncubadora");
+                String nacimiento = horaNacimiento + ":" + minutosNacimiento;
+                String incubadora = "";
+                if (horaIncubadora.isEmpty() || minutosIncubadora.isEmpty()) {
+                    incubadora =null;
+                } else {
+                    incubadora = horaIncubadora + ":" + minutosIncubadora;
+                }
+                Bebe b = new Bebe(dni, nombrePadre, nombreMadre, nacimiento, incubadora);
+                bbdd.addBebe(b);
+
+                request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+                //redirecciono donde le diga
+                String url = "/vistas/indexConBotones.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);

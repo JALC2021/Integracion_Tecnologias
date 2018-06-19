@@ -46,7 +46,7 @@ hacemos el casting delante del request--%>
                 <td><%=b.getHoraNacimiento()%></td>
                 <%-- comprobamos que la hora de salida no sea nula, en caso contrario 
 mostraremos un mensaje de error--%>
-                <td><%if (b.getHoraSalidaIncubadora() == null) {
+                <td><%if (b.getHoraSalidaIncubadora()==null) {
                         b.setHoraSalidaIncubadora("sigue en la incubadora");
                     %><%=b.getHoraSalidaIncubadora()%>
                     <% } else {%>

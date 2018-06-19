@@ -26,7 +26,7 @@ hacemos el casting delante del request--%>
     <body>
         <h1>Gestión de bebés</h1>
 
-        <h2>Bienvenido/a <%=usuarioSession%></h2>
+        <h2>Bienvenido/a <%=usuarioSession%> a la gesti&oacute;n de beb&eacute;s.</h2>
         <form action="Controlador" method="post">
             <input type="hidden" name="accion" value="deslogar" />
             <input type="submit" name="Deslogar" value="Deslogar" />
@@ -62,7 +62,7 @@ hacemos el casting delante del request--%>
                 <td><%=b.getHoraNacimiento()%></td>
                 <%-- comprobamos que la hora de salida no sea nula, en caso contrario 
 mostraremos un mensaje de error--%>
-                <td><%if (b.getHoraSalidaIncubadora() == null) {
+                <td><%if (b.getHoraSalidaIncubadora()==null) {
                         b.setHoraSalidaIncubadora("sigue en la incubadora");
                     %><%=b.getHoraSalidaIncubadora()%>
                     <% } else {%>

@@ -72,6 +72,12 @@ public class CrudBBDD {
         return listaIncubadora;
     }
 
+    public void addBebe(Bebe b)throws SQLException{
+        session=NewHibernateUtil.getSessionFactory().openSession();
+        org.hibernate.Transaction tx=session.beginTransaction();
+        session.save(b);
+        tx.commit();
+    }
     public void deleteBebe(String dni) throws SQLException {
         session = NewHibernateUtil.getSessionFactory().openSession();
         org.hibernate.Transaction tx = session.beginTransaction();
