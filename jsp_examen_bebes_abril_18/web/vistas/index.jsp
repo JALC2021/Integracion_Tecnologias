@@ -25,6 +25,7 @@ hacemos el casting delante del request--%>
     <body>
         <h1>Gestión de bebés</h1>
 
+        <%-- si existe sesion de usuario muestra el nombre --%>
         <%if (usuarioSession != null) {%>
 
         <h2>Bienvenido/a <%=usuarioSession%> a la gesti&oacute;n de beb&eacute;s.</h2>
@@ -33,6 +34,7 @@ hacemos el casting delante del request--%>
             <input type="submit" name="Deslogar" value="Deslogar" />
         </form>        
 
+        <%-- si no existe sesion de usuario muestra el login --%>
         <%} else {%>
 
         <form action="Controlador" method="post">
@@ -50,37 +52,38 @@ hacemos el casting delante del request--%>
                 <th>Nombre de la madre</th>
                 <th>Hora nacimiento</th>
                 <th>Hora salida incubadora</th>
-                <%if (usuarioSession != null) {%>
+                    <%if (usuarioSession != null) {%>
                 <th>
-                    
+
                     <form action="Controlador" method="post">
                         <input type="hidden" name="accion" value="formAlta" />
                         <input type="submit" name="Alta" value="Alta de bebés" />
                     </form>
-                    
+
                 </th>
-                
+
                 <%}%>
             </tr>
 
-            <%
-                
-                if (request.getAttribute("bebesIncubadora") != null) {
+            <%-- si pulsamos en la accion de filtrar muestra la lista filtrada --%>
+            <%-- bebesIncubadora es el value del hidden acction --%>
+
+            <%if (request.getAttribute("bebesIncubadora") != null) {
 
                     //llamamos al metodo de la bbdd que hemos creado para filtrar
                     listaBebes = (List<Bebe>) request.getAttribute("bebesIncubadora");
 
                 } else {
-
+                    //llamamos al metodo de la bbdd que hemos creado para listar la bbdd
                     listaBebes = (List<Bebe>) request.getAttribute("listaBebesBBDD");
                 }
-                
+
+                //si la bbdd esta vacia muestra el mensaje
                 if (listaBebes.isEmpty()) {
 
-            %><tr><td>No hay beb&eacute;s registrados</td></tr><% 
-                
-                    } else {
+            %><tr><td>No hay beb&eacute;s registrados</td></tr><%            } else {
 
+                //recorrera la lista que cumpla la condicion
                 for (Bebe b : listaBebes) {%>
             <tr>
                 <td><%=b.getDni()%></td>
@@ -98,6 +101,7 @@ hacemos el casting delante del request--%>
                 </td>
                 <%}%>
 
+                <%-- si la sesion existe mostrara el boton de borrar en cada fila--%>
                 <% if (usuarioSession != null) {%>
                 <td>   
                     <form action="Controlador" method="post">
@@ -117,6 +121,7 @@ hacemos el casting delante del request--%>
 
         </table>
 
+        <%-- si la sesion existe mostrara el boton de filtrar y mostrara la lista filtrada--%>
         <%if (usuarioSession != null) {%>
         <form action="Controlador" method="post">
             <input type="hidden" name="accion" value="bebesIncubadora" />

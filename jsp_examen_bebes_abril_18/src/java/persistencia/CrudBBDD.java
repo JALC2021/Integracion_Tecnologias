@@ -10,7 +10,6 @@ import java.util.List;
 import modelo.Bebe;
 import modelo.NewHibernateUtil;
 import modelo.Usuario;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -40,7 +39,7 @@ public class CrudBBDD {
         Query q;
         //realizo la query !!!! cuaidado con las mayuscula, si en la bbdd esta en misnucula ponemos la primera en mayuscula y al contrario
         q = session.createQuery("from Bebe");
-        //creamos la lista a devolver en la consulta;
+        //creamos la lista a devolver en la consulta y añadimos la query a la lista
         List<Bebe> listaBebes = q.list();
         //relizamos la transaccion
         tx.commit();
@@ -49,19 +48,28 @@ public class CrudBBDD {
 
     }
 
+    //comprobamos usuario y contraseña
     public Usuario compruebaUsuario(String usuario, String password) throws SQLException {
+        //siempre igual
         session = NewHibernateUtil.getSessionFactory().openSession();
+        //siempre igual
         org.hibernate.Transaction tx = session.beginTransaction();
+        //so cuando hacemos una query
         Query q;
         //q = session.createQuery("from Usuario u where u.usuario ='" + usuario + "' and u.password ='" + password + "'");
+        //apuntar la query!!!!!
         q = session.createQuery("from Usuario u where u.usuario =:usuario and u.password =:password");
+        //injection sql
         q.setString("usuario", usuario);
+        //injection sql
         q.setString("password", password);
+        //devuelve un unico usuario
         Usuario usuarioBBDD = (Usuario) q.uniqueResult();
         tx.commit();
         return usuarioBBDD;
     }
 
+    //metodo para el filtradoque queramos, nos devuelve una lista
     public List<Bebe> sigueIncubadora() throws SQLException {
         session = NewHibernateUtil.getSessionFactory().openSession();
         org.hibernate.Transaction tx = session.beginTransaction();
@@ -72,18 +80,23 @@ public class CrudBBDD {
         return listaIncubadora;
     }
 
-    public void addBebe(Bebe b)throws SQLException{
-        session=NewHibernateUtil.getSessionFactory().openSession();
-        org.hibernate.Transaction tx=session.beginTransaction();
+    //insertamos un nuevo elemento
+    public void addBebe(Bebe b) throws SQLException {
+        session = NewHibernateUtil.getSessionFactory().openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        //en insert no hace falta query ya q ue recogemos los datos en el controlador.
         session.save(b);
         tx.commit();
     }
+
     public void deleteBebe(String dni) throws SQLException {
         session = NewHibernateUtil.getSessionFactory().openSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q;
         q = session.createQuery("delete Bebe where dni = :dni");
+        //injection sql
         q.setString("dni", dni);
+        //ejecuta la actualizacion
         q.executeUpdate();
         tx.commit();
     }

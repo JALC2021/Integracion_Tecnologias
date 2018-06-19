@@ -76,8 +76,7 @@ public class Controlador extends HttpServlet {
                     } else {
                         //variable de session, almaceno el nombre de usuario
                         session.setAttribute("usuario", usuario);
-                        //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
-                        //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+
                         //redirecciono donde le diga
                         url = "/vistas/index.jsp";
 
@@ -86,8 +85,7 @@ public class Controlador extends HttpServlet {
                 } else if (accion.equalsIgnoreCase("Deslogar")) {
                     //elimino variable de session al pulsar deslogar.
                     session.invalidate();
-                    //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
-                    //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+                
                     //redirecciono donde le diga
                     url = "/vistas/index.jsp";
 
@@ -104,6 +102,7 @@ public class Controlador extends HttpServlet {
 
                 } else if (accion.equalsIgnoreCase("altaBebe")) {
 
+                    //recogemos los datos del formulario de alta
                     String dni = request.getParameter("dni");
                     String nombrePadre = request.getParameter("nombrePadre");
                     String nombreMadre = request.getParameter("nombreMadre");
@@ -118,10 +117,11 @@ public class Controlador extends HttpServlet {
                     } else {
                         incubadora = horaIncubadora + ":" + minutosIncubadora;
                     }
+                    //creamos el objeto a insertar
                     Bebe b = new Bebe(dni, nombrePadre, nombreMadre, nacimiento, incubadora);
+                    //llamamos al metodo crwado y se le pasa el objeto relleno
                     bbdd.addBebe(b);
 
-                    //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
                     //redirecciono donde le diga
                     url = "/vistas/index.jsp";
 
@@ -133,7 +133,7 @@ public class Controlador extends HttpServlet {
 
                     String dni = request.getParameter("dni");
                     bbdd.deleteBebe(dni);
-                    //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+
                     //redirecciono donde le diga
                     url = "/vistas/index.jsp";
 
