@@ -34,135 +34,128 @@ public class Controlador extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
 
         //creamos una session con HttpSession y la recogemos con el request a falso
         HttpSession session = request.getSession(false);
+        //redirecciono donde le diga
+        String url = "/vistas/index.jsp";
         //creamos nuestro crudBBDD
         CrudBBDD bbdd = new CrudBBDD();
+        //donde el campo name sea igual a accion
+        String accion = request.getParameter("accion");
 
         if (session != null) {
-            //donde el campo name sea igual a accion
-            String accion = request.getParameter("accion");
 
-            //comprobamos que el campo value del action sea el mismo
-            //pasamos a la vista del login
-            if (accion.equalsIgnoreCase("login")) {
-                String url = "/vistas/login.jsp";
-                //estas tres lineas siempre son asi
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
-                //comprobamos el usuario y contraseña del login
-            } else if (accion.equalsIgnoreCase("registro")) {
-                //recojo los datos del formulario
-                String usuario = request.getParameter("usuario");
-                String password = request.getParameter("password");
-                //llamamos al metodo que comprueba usario y password
-                Usuario usuarioBBDD = bbdd.compruebaUsuario(usuario, password);
+            if (accion != null) {
 
-                if (usuarioBBDD == null) {
-                    //muestra un mensaje de error en las credenciales
-                    String mensaje = "usuario o contraseña no existe";
-                    //en la vista donde queramos mostrar este mensaje lo recogeremos con el getAttribute
-                    request.setAttribute("mensaje", mensaje);
-                    //redirecciono donde le diga
-                    String url = "/vistas/login.jsp";
-                    ServletContext sc = getServletContext();
-                    RequestDispatcher rd = sc.getRequestDispatcher(url);
-                    rd.forward(request, response);
-                } else {
-                    //variable de session, almaceno el nombre de usuario
-                    session.setAttribute("usuario", usuario);
+                //comprobamos que el campo value del action sea el mismo
+                //pasamos a la vista del login
+                if (accion.equalsIgnoreCase("login")) {
+                    url = "/vistas/login.jsp";
+
+                    //comprobamos el usuario y contraseña del login
+                } else if (accion.equalsIgnoreCase("registro")) {
+                    //recojo los datos del formulario
+                    String usuario = request.getParameter("usuario");
+                    String password = request.getParameter("password");
+                    //llamamos al metodo que comprueba usario y password
+                    Usuario usuarioBBDD = bbdd.compruebaUsuario(usuario, password);
+
+                    if (usuarioBBDD == null) {
+                        //muestra un mensaje de error en las credenciales
+                        String mensaje = "usuario o contraseña no existe";
+                        //en la vista donde queramos mostrar este mensaje lo recogeremos con el getAttribute
+                        request.setAttribute("mensaje", mensaje);
+                        //redirecciono donde le diga
+                        url = "/vistas/login.jsp";
+
+                    } else {
+                        //variable de session, almaceno el nombre de usuario
+                        session.setAttribute("usuario", usuario);
+                        //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
+                        //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+                        //redirecciono donde le diga
+                        url = "/vistas/index.jsp";
+
+                    }
+
+                } else if (accion.equalsIgnoreCase("Deslogar")) {
+                    //elimino variable de session al pulsar deslogar.
+                    session.invalidate();
                     //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
-                    request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+                    //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
                     //redirecciono donde le diga
-                    String url = "/vistas/indexConBotones.jsp";
-                    ServletContext sc = getServletContext();
-                    RequestDispatcher rd = sc.getRequestDispatcher(url);
-                    rd.forward(request, response);
+                    url = "/vistas/index.jsp";
 
-                    //pruebaaaaaaa
+                } else if (accion.equalsIgnoreCase("bebesIncubadora")) {
+
+                    //redirecciono donde le diga
+                    url = "/vistas/index.jsp";
+                    //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
+                    request.setAttribute("bebesIncubadora", bbdd.sigueIncubadora());
+
+                } else if (accion.equalsIgnoreCase("formAlta")) {
+
+                    url = "/vistas/add.jsp";
+
+                } else if (accion.equalsIgnoreCase("altaBebe")) {
+
+                    String dni = request.getParameter("dni");
+                    String nombrePadre = request.getParameter("nombrePadre");
+                    String nombreMadre = request.getParameter("nombreMadre");
+                    String horaNacimiento = request.getParameter("horaNacimiento");
+                    String minutosNacimiento = request.getParameter("minNacimiento");
+                    String horaIncubadora = request.getParameter("horaIncubadora");
+                    String minutosIncubadora = request.getParameter("minIncubadora");
+                    String nacimiento = horaNacimiento + ":" + minutosNacimiento;
+                    String incubadora = "";
+                    if (horaIncubadora.isEmpty() || minutosIncubadora.isEmpty()) {
+                        incubadora = null;
+                    } else {
+                        incubadora = horaIncubadora + ":" + minutosIncubadora;
+                    }
+                    Bebe b = new Bebe(dni, nombrePadre, nombreMadre, nacimiento, incubadora);
+                    bbdd.addBebe(b);
+
+                    //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+                    //redirecciono donde le diga
+                    url = "/vistas/index.jsp";
+
+                } else if (accion.equalsIgnoreCase("cancelarAlta")) {
+
+                    url = "/vistas/index.jsp";
+
+                } else if (accion.equalsIgnoreCase("borrar")) {
+
+                    String dni = request.getParameter("dni");
+                    bbdd.deleteBebe(dni);
+                    //request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+                    //redirecciono donde le diga
+                    url = "/vistas/index.jsp";
+
                 }
 
-            } else if (accion.equalsIgnoreCase("Deslogar")) {
-                //elimino variable de session al pulsar deslogar.
-                session.invalidate();
-                //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
-                request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
-                //redirecciono donde le diga
-                String url = "/vistas/index.jsp";
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
-
-            } else if (accion.equalsIgnoreCase("bebesIncubadora")) {
-                //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
-                request.setAttribute("bebesIncubadora", bbdd.sigueIncubadora());
-                //redirecciono donde le diga
-                String url = "/vistas/indexConBotones.jsp";
-                //estas tres lineas siempre son asi
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
-
-            } else if (accion.equalsIgnoreCase("formAlta")) {
-
-                String url = "/vistas/add.jsp";
-                //estas tres lineas siempre son asi
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
-
-            } else if (accion.equalsIgnoreCase("altaBebe")) {
-
-                String dni = request.getParameter("dni");
-                String nombrePadre = request.getParameter("nombrePadre");
-                String nombreMadre = request.getParameter("nombreMadre");
-                String horaNacimiento = request.getParameter("horaNacimiento");
-                String minutosNacimiento = request.getParameter("minNacimiento");
-                String horaIncubadora = request.getParameter("horaIncubadora");
-                String minutosIncubadora = request.getParameter("minIncubadora");
-                String nacimiento = horaNacimiento + ":" + minutosNacimiento;
-                String incubadora = "";
-                if (horaIncubadora.isEmpty() || minutosIncubadora.isEmpty()) {
-                    incubadora =null;
-                } else {
-                    incubadora = horaIncubadora + ":" + minutosIncubadora;
-                }
-                Bebe b = new Bebe(dni, nombrePadre, nombreMadre, nacimiento, incubadora);
-                bbdd.addBebe(b);
-
-                request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
-                //redirecciono donde le diga
-                String url = "/vistas/indexConBotones.jsp";
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
-
-            } else if (accion.equalsIgnoreCase("borrar")) {
-                String dni = request.getParameter("dni");
-                bbdd.deleteBebe(dni);
-                request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
-                //redirecciono donde le diga
-                String url = "/vistas/indexConBotones.jsp";
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
             }
 
-        } else {
             //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
             request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
-            //redirecciono donde le diga
-            String url = "/vistas/index.jsp";
             //estas tres lineas siempre son asi
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher(url);
             rd.forward(request, response);
 
+        } else {
+
+            //muestra y refresca la lista, el primer parametro le pongo el nombre que yo quiera
+            request.setAttribute("listaBebesBBDD", bbdd.ListaBebes());
+            //estas tres lineas siempre son asi
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
