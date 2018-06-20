@@ -66,14 +66,12 @@ public class servidorSoap {
     }
 
     @WebMethod(operationName = "rentaYaRegistrada")
-    public Boolean rentaYaRegistrada(@WebParam(name = "dni") String dni) {
+    public boolean rentaYaRegistrada(@WebParam(name = "dni") String dni) {
 
-        Boolean encontrado = false;
+        boolean encontrado = false;
         for (Usuario usuario : listaUsuarios) {
             if (usuario.getDni().equalsIgnoreCase(dni)) {
                 encontrado = true;
-            } else {
-                encontrado = false;
             }
         }
 
