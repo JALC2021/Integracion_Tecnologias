@@ -1,2 +1,2 @@
-# IT_jalc
-epds de la asignatura integración de tecnologías realizado por mi
+# Integración de Tecnologías
+Jsp, Hibernate, Struts2, JS, Soap y Rest.
